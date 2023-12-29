@@ -65,10 +65,8 @@ $(document).ready(() => {
 
     // Tạo các nút bên phải trên cùng
     var topRightButtons = L.control({ position: "topright" });
-
     topRightButtons.onAdd = function (map) {
         var container = L.DomUtil.create("div", "leaflet-bar leaflet-control");
-
         // Thêm nút Home
         var barsButton = L.DomUtil.create(
             "a",
@@ -80,6 +78,18 @@ $(document).ready(() => {
         barsButton.innerHTML = '<i class="fa-solid fa-house"></i>';
         L.DomEvent.on(barsButton, "click", function () {
             window.location.href = "/";
+        });
+        // Thêm nút Reload
+        var barsButton = L.DomUtil.create(
+            "a",
+            "leaflet-control-button  mt-1",
+            container
+        );
+        barsButton.href = "#";
+        barsButton.title = "Reload";
+        barsButton.innerHTML = '<i class="fa fa-solid fa-clock-rotate-left"></i>';
+        L.DomEvent.on(barsButton, "click", function () {
+            window.location.reload();
         });
         // Thêm nút Bars (Open Menu)
         var barsButton = L.DomUtil.create(
