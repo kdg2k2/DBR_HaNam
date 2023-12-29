@@ -1,0 +1,150 @@
+@font-face {
+    font-display: swap;
+    font-family: eicons;
+    src: url(/winery/wp-content/plugins/elementor/assets/lib/eicons/css/../fonts/eicons.woff) format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-display: swap;
+    font-family: swiper-icons;
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: quicksand;
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/l/font?kit=6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkM0o18Ks-SYEag6iI9hqTrNu7FBue91CrL9mGc_-LUW-EWfkSE0kNUuuCXCotqX2M3Ceef1SXrskapTk32BW3wEgtQGu&skey=c01f11fa5439d932&v=v31) format('woff')
+}
+
+@font-face {
+    font-family: quicksand;
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/l/font?kit=6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkCEv18Ks-SYEag6iI9hqTrNu7FBue91CrL9mGc_-LUW-EWfkSE0kNUuuCXCotqX2M3Ceef1SXrskapTk32BW3wEgtQGu&skey=c01f11fa5439d932&v=v31) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: star;
+    src: url(/winery/wp-content/uploads/sites/80/the7-css/compatibility/../../../../../../wp-content/themes/dt-the7/css/compatibility/woo-fonts/star.woff) format('woff');
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-display: swap;
+    font-family: WooCommerce;
+    src: url(/winery/wp-content/uploads/sites/80/the7-css/compatibility/../../../../../../wp-content/themes/dt-the7/css/compatibility/woo-fonts/WooCommerce.woff) format('woff');
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-display: swap;
+    font-family: poiret one;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/poiretone/v16/UqyVK80NJXN4zfRgbdfbo55cUQ.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: italic;
+    font-weight: 300;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQEbohi_ic6B3yVSzGBrMxQbb0jEzlRoOOLOnAz4PXgcq1H.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: italic;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQEbohi_ic6B3yVSzGBrMxQbb0jEzlRoOOLOnAzvvXgcq1H.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: italic;
+    font-weight: 500;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQEbohi_ic6B3yVSzGBrMxQbb0jEzlRoOOLOnAzjPXgcq1H.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: italic;
+    font-weight: 600;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQEbohi_ic6B3yVSzGBrMxQbb0jEzlRoOOLOnAzYPLgcq1H.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: italic;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQEbohi_ic6B3yVSzGBrMxQbb0jEzlRoOOLOnAzWfLgcq1H.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: normal;
+    font-weight: 300;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQCbohi_ic6B3yVSzGBrMx6ZI_cy1A6Ok2ML-ZwZrHQdg.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQCbohi_ic6B3yVSzGBrMx6ZI_cy1A6Ok2ML7hwZrHQdg.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: normal;
+    font-weight: 500;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQCbohi_ic6B3yVSzGBrMx6ZI_cy1A6Ok2ML4pwZrHQdg.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: normal;
+    font-weight: 600;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQCbohi_ic6B3yVSzGBrMx6ZI_cy1A6Ok2ML2Z3ZrHQdg.woff) format('woff')
+}
+
+@font-face {
+    font-display: swap;
+    font-family: red hat text;
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/redhattext/v14/RrQCbohi_ic6B3yVSzGBrMx6ZI_cy1A6Ok2ML193ZrHQdg.woff) format('woff')
+}
+
+@font-face {
+    font-family: "font awesome 5 free";
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(/winery/wp-content/plugins/elementor/assets/lib/font-awesome/css/../webfonts/fa-solid-900.woff) format("woff")
+}
+
+@font-face {
+    font-family: "font awesome 5 brands";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/winery/wp-content/plugins/elementor/assets/lib/font-awesome/css/../webfonts/fa-brands-400.woff) format("woff")
+}

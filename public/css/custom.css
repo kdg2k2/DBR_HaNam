@@ -1,0 +1,8 @@
+h4, p, h1, h2, h5, .dt-nav-menu>li>a{
+    font-family: fangsong !important;
+}
+
+footer .elementor-widget-wrap{
+    display: flex;
+    justify-content: center;
+}

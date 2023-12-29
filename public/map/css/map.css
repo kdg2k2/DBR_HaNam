@@ -1,0 +1,816 @@
+#map {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.menu-map.open {
+    visibility: visible;
+    opacity: 1;
+    left: 0;
+    position: relative;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.menu-map {
+    padding: 12px 0;
+}
+
+.menu-map {
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    background-color: #EEEFF2;
+    left: -100%;
+    display: block;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.menu-map {
+    padding: 15px 0;
+}
+
+.close-menu-map {
+    position: absolute;
+    top: 13px;
+    right: 16px;
+    z-index: 99;
+}
+
+.leaflet-touch .leaflet-control-layers-toggle {
+    width: 30px;
+    height: 30px;
+}
+
+#close-menu-map {
+    border: none;
+    font-size: 20px;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.leaflet-bottom.leaflet-right{
+    display: none;
+}
+
+h5{
+    color: #24A77E !important;
+}
+
+/*------------   Main Menu CSS  ---------------*/
+@media only screen and (min-width: 1200px) {
+    .main-menu-wrap #menu ul li {
+        display: inline-block;
+        position: relative;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+
+    .main-menu-wrap #menu ul li a {
+        padding: 28px 18px;
+        color: #01040F;
+        font-family: "Roboto", sans-serif;
+        font-size: 20px;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+    .main-menu-wrap #menu ul li a.active,
+    .main-menu-wrap #menu ul li a:hover {
+        border-color: #01040F;
+    }
+
+    .main-menu-wrap #menu ul li.has-children .sub-menu {
+        position: absolute;
+        top: 58px;
+        left: -6px;
+        min-width: 300px;
+        border-radius: 2px;
+        background: #F4FBF7;
+        visibility: hidden;
+        opacity: 0;
+        -webkit-box-shadow: 0 9px 52px -14px rgba(0, 0, 0, 0.17);
+        box-shadow: 0 9px 52px -14px rgba(0, 0, 0, 0.17);
+        z-index: 10;
+        display: block !important;
+        -webkit-transform: rotateX(-75deg);
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+        -webkit-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+    .main-menu-wrap #menu ul li.has-children .sub-menu li {
+        margin: 0;
+        display: block;
+        text-align: left;
+    }
+
+    .main-menu-wrap #menu ul li.has-children .sub-menu li a {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+        margin: 0;
+        display: block;
+        padding: 12px 22px;
+        margin: 0;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+        position: relative;
+    }
+
+    .main-menu-wrap #menu ul li.has-children .sub-menu li a.active,
+    .main-menu-wrap #menu ul li.has-children .sub-menu li a:hover {
+        background-color: #24A77E;
+        color: #fff;
+    }
+
+    .main-menu-wrap #menu ul li.has-children .sub-menu li:last-child>a {
+        border-bottom: none;
+    }
+
+    .main-menu-wrap #menu ul li.has-children:hover>.sub-menu {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transform: rotatex(0deg);
+        transform: rotatex(0deg);
+    }
+
+    .main-menu-wrap #menu>ul>li {
+        margin: 0;
+    }
+
+    .main-menu-wrap #menu>ul>li>a {
+        display: inline-block;
+        position: relative;
+        font-weight: 400;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+    .main-menu-wrap #menu>ul>li>a:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: "";
+        width: 0;
+        height: 2px;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+    .main-menu-wrap #menu>ul>li>a.active:after,
+    .main-menu-wrap #menu>ul>li>a:hover:after {
+        width: 100%;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .main-menu-wrap #menu>ul>li.has-children>a {
+        position: relative;
+    }
+
+    .main-menu-wrap #menu>ul>li.has-children>a:before {
+        position: absolute;
+        top: 29px;
+        right: 2px;
+        font-family: "Flaticon";
+        font-size: 13px;
+        font-weight: 600;
+        -webkit-transition: 0.6s;
+        transition: 0.6s;
+    }
+
+    .main-menu-wrap #menu>ul>li.has-children>a.active,
+    .main-menu-wrap #menu>ul>li.has-children>a:hover {
+        border-bottom-color: rgba(247, 125, 14, 0.26);
+    }
+
+    .main-menu-wrap #menu>ul>li.has-children>a.active:before,
+    .main-menu-wrap #menu>ul>li.has-children>a:hover:before {
+        border-color: #24A77E;
+    }
+
+    .main-menu-wrap #menu>ul>li.has-children>a:hover:before {}
+
+    .main-menu-wrap #menu>ul>li.has-children>.sub-menu>.has-children>a {
+        position: relative;
+    }
+
+    .main-menu-wrap #menu>ul>li.has-children>.sub-menu>.has-children>a:after {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-width: 0 0 1px 1px;
+        border-style: solid;
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+
+    .main-menu-wrap #menu>ul>li.has-children>.sub-menu>.has-children>a:hover:after {
+        border-color: #fff;
+    }
+
+    .main-menu-wrap #menu>ul>.has-children {
+        position: relative;
+    }
+
+    .main-menu-wrap.style1 {
+        text-align: center;
+    }
+
+    .main-menu-wrap.style1 #menu>ul>li>a {
+        color: #fff;
+        padding: 32px 22px;
+    }
+
+    .main-menu-wrap.style1 #menu>ul>li>a:before {
+        font-size: 9px;
+        right: 5px;
+        top: 32px;
+    }
+
+    .main-menu-wrap.style1 #menu>ul>li>a:after {
+        background: #24A77E;
+        width: calc(100% + 5px);
+    }
+
+    .main-menu-wrap.style1 #menu>ul>li.has-children .sub-menu {
+        top: 88px;
+    }
+
+    .main-menu-wrap.style2 #menu>ul>li>a:after {
+        background: #24A77E;
+    }
+
+    .main-menu-wrap.style2 #menu>ul>li>a.active,
+    .main-menu-wrap.style2 #menu>ul>li>a:hover {
+        color: #24A77E;
+    }
+
+    .main-menu-wrap.style2 #menu>ul>li a {
+        color: #132728;
+        position: relative;
+        padding: 18px 18px;
+    }
+
+    .main-menu-wrap.style2 #menu>ul>li a i {
+        position: relative;
+        top: 2px;
+        margin-right: 6px;
+        font-size: 16px;
+    }
+
+    .main-menu-wrap.style2 #menu>ul>li a:before {
+        font-size: 9px;
+        right: 5px;
+        top: 19px;
+    }
+
+    .main-menu-wrap.style3 #menu ul>li>a:after {
+        bottom: -2px;
+        height: 3px;
+    }
+
+    .main-menu-wrap.style3 #menu>ul>li {
+        margin: 0 36px 0 0;
+    }
+
+    .main-menu-wrap.style3 #menu>ul>li:last-child {
+        margin-right: 0;
+    }
+
+    .main-menu-wrap.style3 #menu>ul>li>a {
+        color: #132728;
+        position: relative;
+        padding: 15px 10px 15px 15px;
+    }
+
+    .main-menu-wrap.style3 #menu>ul>li>a:after {
+        background: #24A77E;
+        bottom: -2px;
+        height: 3px;
+    }
+
+    .main-menu-wrap.style3 #menu>ul>li>a:before {
+        top: 29px;
+        right: -3px;
+        font-size: 9px;
+        font-weight: 600;
+    }
+
+    .main-menu-wrap.style3 #menu>ul>li.has-children a:before {
+        top: 16px;
+    }
+
+    .main-menu-wrap #menu ul>.has-children>.sub-menu>.has-children>.sub-menu {
+        left: 100%;
+        top: 0px !important;
+    }
+
+    .menu-expand i {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1280px) {
+    .header-wrap.style1 .header-right .btn {
+        margin-left: 18px;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+    /*----Hero Section CSS-----*/
+    .hero-wrap.style3 .hero-slide-item .hero-content h1 {
+        line-height: 1.4;
+        font-size: 36px;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+
+    /*----Counter Section CSS-----*/
+    .counter-card.style2 h2,
+    .counter-card.style3 h2 {
+        font-size: 46px;
+        line-height: 1.2;
+    }
+
+    .counter-card.style2,
+    .counter-card.style3 {
+        padding: 40px 40px 30px;
+        margin: 0 0 30px;
+    }
+
+    .counter-card.style2 .icon-blur i,
+    .counter-card.style3 .icon-blur i {
+        font-size: 69px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .pt-100 {
+        padding-top: 70px;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+
+    .pb-100 {
+        padding-bottom: 70px;
+    }
+
+    .pb-50 {
+        padding-bottom: 20px;
+    }
+
+    .mt-100 {
+        margin-top: 70px !important;
+    }
+
+    .smb-25 {
+        margin-bottom: 25px;
+    }
+
+    .ptb-100 {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .pt-70 {
+        padding-top: 40px;
+    }
+
+    .pb-70 {
+        padding-bottom: 40px;
+    }
+
+    .pb-75 {
+        padding-bottom: 45px;
+    }
+
+    .pb-50 {
+        padding-bottom: 20px;
+    }
+
+    .pt-75 {
+        padding-top: 45px;
+    }
+
+    .section-title.mb-50 {
+        margin-bottom: 35px;
+    }
+
+    /*---Hero Section CSS----*/
+    .hero-wrap.style3 .hero-slide-item {
+        padding: 50px 0 55px;
+        overflow: hidden;
+    }
+
+    .hero-wrap.style3 .hero-slide-item .hero-content {
+        padding: 0 50px;
+    }
+
+    .promo-service {
+        margin-top: 50px;
+    }
+
+    .hero-wrap.style1 {
+        padding: 140px 0 140px;
+    }
+
+    .hero-wrap.style1 .hero-content {
+        padding: 0 60px 130px;
+    }
+
+    .hero-wrap.style3 .hero-slide-item .hero-img img {
+        max-width: 400px;
+    }
+
+    .hero-wrap.style3 .hero-slide-item .hero-content {
+        margin-top: 30px;
+    }
+
+    .hero-wrap.style2 .hero-img img {
+        margin: 0 auto;
+        display: block;
+        max-width: 400px;
+    }
+
+    .gd-cat.one {
+        left: 20px;
+    }
+
+    .gd-cat.two {
+        right: 30px;
+    }
+
+    .gd-cat.three {
+        left: 40px;
+        bottom: 45%;
+    }
+
+    .gd-cat.four {
+        right: 50px;
+        bottom: 45%;
+        left: auto;
+    }
+
+    .hero-wrap.style2 .hero-content {
+        padding: 50px 50px 60px;
+    }
+
+    .hero-wrap.style2 .hero-content h1 {
+        font-size: 34px;
+    }
+
+    /*---About Section CSS----*/
+    .about-wrap.style3 {
+        padding-bottom: 70px !important;
+    }
+
+    /*---Service Section CSS----*/
+    .service-card.style1 .service-header .service-header-title h3::after,
+    .service-card.style3 .service-header .service-header-title h3::after {
+        display: none;
+    }
+
+    .service-wrap .search-box input {
+        height: 48px;
+    }
+
+    /*---Why Choose Us CSS----*/
+    .why-choose-wrap.style3 .wh-video {
+        height: 400px;
+        margin-top: 30px;
+    }
+
+    /*----Shop CSS----*/
+    .profuct-result p {
+        font-size: 15px;
+    }
+
+    .single-product-details {
+        margin: 30px 0 0;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1439px) {
+    .hero-wrap .hero-content h1 {
+        font-size: 46px;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+
+    .about-wrap.style3 {
+        padding-bottom: 120px;
+    }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1500px) {
+    .main-menu-wrap #menu ul li a {
+        font-size: 20px;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+
+    .header-top-right .select_lang .navbar-language .dropdown-toggle,
+    .header-top-right .select_currency,
+    .header-top-right .wallet {
+        font-size: 14px;
+    }
+
+    .header-wrap .btn {
+        font-size: 14px;
+    }
+
+    .header-wrap.style1 .header-right .btn {
+        margin-left: 14px;
+        padding: 10px 18px;
+    }
+
+    .about-wrap.style3 .about-img-slider .about-bg-one {
+        height: 453px;
+    }
+
+    .about-wrap.style3 .about-content .content-title h2 {
+        font-size: 39px;
+    }
+
+    .about-wrap.style3 {
+        padding-bottom: 125px !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .xlg-none {
+        display: none;
+    }
+
+    .main-menu-wrap #menu ul li a {
+        padding: 28px 14px;
+        font-size: 20px;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+
+    .main-menu-wrap #menu>ul>li.has-children>a::before {
+        right: -2px !important;
+    }
+
+    .main-menu-wrap.style1 #menu>ul>li.has-children>a::before {
+        right: 5px !important;
+    }
+
+    .header-wrap.style1 .btn.style1 {
+        padding: 10px 23px;
+    }
+
+    .header-wrap.style2.sticky .header-bottom {
+        width: calc(100% - 60px);
+        left: 30px;
+    }
+
+    .header-top-right .shopcart {
+        margin: 0 17px 0 15px;
+    }
+
+    .header-top-right .select_currency {
+        margin-left: 15px;
+    }
+
+    .header-top-right .select_lang .navbar-language .dropdown-toggle,
+    .header-top-right .select_currency,
+    .header-top-right .wallet {
+        font-size: 13px;
+    }
+
+    .header-wrap .btn {
+        font-size: 14px;
+    }
+
+    .header-wrap .container-fluid {
+        padding: 0 30px !important;
+    }
+
+    /*----Hero Section CSS-----*/
+    .hero-wrap.style3 .hero-slide-item .hero-content::before {
+        left: 0;
+    }
+
+    .hero-wrap.style3 .hero-slide-item .hero-content {
+        position: relative;
+        padding-left: 40px;
+    }
+
+    /*----About Section CSS-----*/
+    .about-wrap.style3 .content-title h2 {
+        font-size: 38px;
+    }
+
+    .about-wrap.style3 .about-img-slider .about-bg-one {
+        height: 480px;
+        margin-left: 40px;
+    }
+
+    .about-wrap.style3 .about-content .content-title h2 {
+        font-size: 34px;
+    }
+
+    /*----Counter Section CSS-----*/
+    .service-card.style1 .service-header .service-header-title h3::after,
+    .service-card.style3 .service-header .service-header-title h3::after {
+        width: 32px;
+    }
+
+    /*----Counter Section CSS-----*/
+    .counter-card.style2 h2,
+    .counter-card.style3 h2 {
+        font-size: 54px;
+        line-height: 1.2;
+    }
+
+    /*----Why Choose Us CSS-----*/
+    .why-choose-wrap.style3 .wh-video {
+        height: 757px;
+    }
+
+    /*----Footer CSS-----*/
+    .comp-desc {
+        padding-right: 50px !important;
+    }
+
+    .section-img.style1 {
+        right: 25px;
+    }
+
+    .section-img.style2 {
+        right: 25px;
+    }
+
+    .footer-wrap .footer-top .footer-shape-1 {
+        bottom: -11px;
+        left: 20px;
+    }
+
+    /*----Contact Setion CSS----*/
+    .quote-bg .contact-form,
+    .comp-map .contact-form {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .product-card .product-img .product-option {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+
+    .product-card:hover .product-img .product-option {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .about-wrap.style3 {
+        padding-bottom: 160px;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    /*Hero Section CSS*/
+    .hero-wrap.style3 .hero-slide-item {
+        padding: 74px 0 65px;
+    }
+
+    .menu-map {
+        width: 25%;
+    }
+
+    .hero-wrap.style1 {
+        padding: 140px 0 90px;
+    }
+
+    .hero-wrap.style2 .hero-slide-one .hero-content h1,
+    .hero-wrap.style3 .hero-slide-item .hero-content h1 {
+        line-height: 1.4;
+        font-size: 35px;
+    }
+
+    .hero-wrap.style2 .hero-slide-one .hero-content p {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .hero-wrap.style3 .hero-slide-item .hero-content::before {
+        left: -25px;
+    }
+
+    .promo-service {
+        margin-top: 100px;
+    }
+
+    .gd-cat.one {
+        left: 40%;
+    }
+
+    .about-wrap.style3 {
+        padding-bottom: 100px !important;
+    }
+
+    /*----Counter Section CSS-----*/
+    .counter-card.style2 h2,
+    .counter-card.style3 h2 {
+        font-size: 46px;
+        line-height: 1.2;
+    }
+
+    .counter-card.style2,
+    .counter-card.style3 {
+        padding: 40px 40px 30px;
+        margin: 0 0 30px;
+    }
+
+    .fun-facts-card h2 {
+        font-size: 50px;
+    }
+
+    .fun-facts-card i {
+        font-size: 20px;
+        top: 22px;
+        padding: 4px 6px;
+    }
+
+    .fun-facts-card p {
+        font-size: 16px;
+    }
+
+    /*---Why Choose Us CSS----*/
+    .why-choose-wrap.style3 .wh-item-wrap .wh-item:nth-child(2)::before,
+    .why-choose-wrap.style3 .wh-item-wrap .wh-item:nth-child(4)::before {
+        width: 100vw;
+    }
+
+    .why-choose-wrap.style3 .wh-video {
+        height: 550px;
+        margin-top: 50px;
+    }
+
+    /*---Newsletter CSS----*/
+    .newsletter-wrap.style1 .newsletter-form .form-group input,
+    .newsletter-wrap.style2 .newsletter-form .form-group input,
+    .newsletter-wrap.style3 .newsletter-form .form-group input {
+        font-size: 13px;
+    }
+
+    .newsletter-wrap.style1 .newsletter-form .form-group button,
+    .newsletter-wrap.style3 .newsletter-form .form-group button {
+        padding: 5px 18px;
+        font-size: 13px;
+    }
+
+    /*----Contact Setion CSS----*/
+    .quote-bg .contact-form,
+    .comp-map .contact-form {
+        width: 100%;
+    }
+}
