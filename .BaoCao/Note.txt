@@ -1,0 +1,15 @@
+## Xây dựng hệ thống dự báo cháy rừng (mục tiêu :tiến tới phát hiện cháy rừng)
+
+1. Bài toán
+    - Dựa vào đâu đưa ra cảnh báo cháy và phát hiện điểm cháy? 
+    - Liệu tính chính xác có cao không?
+2. Giải pháp
+    - Sử dụng Weather api lấy dữ liệu thời tiết trong 24h giờ (từ 13h hôm trước đến hôm nay - 13h là thời gian nhiệt độ đỉnh điểm trong ngày dễ gây cháy nhất) thực hiện tính toán chỉ số P của Nesterop và dựa vào bảng tra cứu chỉ số P theo khu vực đưa ra dự báo cấp cảnh báo cháy phù hợp.
+    - Dựa vào số liệu sau khi tính toán hiển thị lên bản đồ trực quan với leaflet map và gửi mail thông báo cho người dùng dự báo cấp cháy và thông tin thời tiết.
+## Sử dụng Nasa forest fire api nhận thông tin điểm cháy trong khu vực để gửi mail cảnh báo cho người dùng và hiển thị trực quan trên bản đồ.
+
+3. Khó khăn gặp phải khi xây dựng hệ thống
+    - Cách tính chỉ số P và các điều kiện để đưa ra được cảnh báo cháy chính xác nhất
+    - Thu thập bản đồ shp file
+    - Cài cắm geoserver
+    - Chính sách Same Origin không cho phép đọc tài nguyên từ xa khi CORS header thiếu ‘Access-Control-Allow-Origin’ (Geoserver CORS missing allow origin)

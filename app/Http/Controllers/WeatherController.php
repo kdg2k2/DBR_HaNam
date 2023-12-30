@@ -8,6 +8,8 @@ use App\receiveEmail;
 use App\Weather;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class WeatherController extends Controller
 {
@@ -47,8 +49,8 @@ class WeatherController extends Controller
             $data['doam'] = $data_weather->forecast->forecastday[0]->hour[13]->humidity;
             $data['tocdogio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_kph;
             $data['huonggio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_degree;
-            $E = 6.1 * pow(10, ((7.6 * $data_weather->forecast->forecastday[0]->hour[13]->temp_c) / (242 + $data_weather->forecast->forecastday[0]->hour[13]->temp_c)));
-            $d = (100 - $data_weather->forecast->forecastday[0]->hour[13]->humidity) / 100 * $E;
+            $E = 6.1 * pow(10, ((7.6 * $data['nhietdo']) / (242 + $data['nhietdo'])));
+            $d = (100 - $data['doam']) / 100 * $E;
             $data['csp'] = 0;
             $data['capncc'] = 1;
             $data['d'] = $d;

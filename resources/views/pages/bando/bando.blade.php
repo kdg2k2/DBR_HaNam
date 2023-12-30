@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Diến Biến Rừng Hà Nam</title>
+    <title>Bản Đồ</title>
     <link rel="icon" href="{{ asset('/img/logo/kdg_logo.jpg') }}" sizes="192x192" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -16,6 +16,7 @@
 
 <body>
     <div id="map"></div>
+    <img style="height: 12vh; bottom: 0; position: absolute; z-index: 2; margin-bottom: 20px ; margin-left: 10px; visibility: hidden; right: 0;" src="{{ asset('/map/images/fireWarningIcon/alarm.png') }}" id="fireWarningImg">
 
     <div id="menu-map" class="menu-map">
         <div class="close-menu-map">
@@ -46,11 +47,11 @@
                 <div style="margin-left: 18px; display: grid;">
                     <div class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" id="bandoDBR">
-                        <label class="form-check-label" style="font-weight: normal;">Hiện trạng rừng</label>
+                        <label class="form-check-label" style="font-weight: normal;" for="bandoDBR">Hiện trạng rừng</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" id="bandoCapChay">
-                        <label class="form-check-label" style="font-weight: normal;"> Cấp cháy</label>
+                        <label class="form-check-label" style="font-weight: normal;" for="bandoCapChay"> Cấp cháy</label>
                     </div>
                     <!-- <div class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" id="diemChay" checked>

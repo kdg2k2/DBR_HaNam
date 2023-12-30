@@ -22,3 +22,9 @@ Route::get("/getWeather", "WeatherController@getIndex");
 Route::get("/updateDaily", "WeatherController@updateDaily");
 Route::get("/sendEmail", "WeatherController@sendEmail");
 Route::get("/updateDBR", "WeatherController@updateDBR");
+
+Route::get("district/{matinh}", "getRegion@getDistrict");
+Route::get("commune/{mahuyen}", "getRegion@getCommune");
+
+//ajax
+Route::get('ajax/getWeather/{maxa}', 'AjaxController@getWeatherCommune');
