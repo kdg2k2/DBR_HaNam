@@ -45,18 +45,6 @@
                                                     data-settings="{&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;motion_fx_scale_effect&quot;:&quot;yes&quot;,&quot;motion_fx_scale_direction&quot;:&quot;in-out&quot;,&quot;motion_fx_scale_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:4,&quot;sizes&quot;:[]},&quot;motion_fx_scale_range&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;start&quot;:20,&quot;end&quot;:80}},&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}">
                                                     <div class="elementor-column-wrap elementor-element-populated">
                                                         <div class="elementor-widget-wrap">
-                                                            <div class="elementor-element elementor-element-537ee91 elementor-widget elementor-widget-image"
-                                                                data-id="537ee91" data-element_type="widget"
-                                                                data-widget_type="image.default">
-                                                                <div class="elementor-widget-container">
-                                                                    <div class="elementor-image">
-                                                                        <img decoding="async"
-                                                                            src="/winery/wp-content/uploads/sites/80/2021/05/berry-logo-white.svg"
-                                                                            class="attachment-full size-full wp-image-578"
-                                                                            alt />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <div class="elementor-element elementor-element-cd6b764 elementor-widget elementor-widget-heading"
                                                                 data-id="cd6b764" data-element_type="widget"
                                                                 data-widget_type="heading.default">
@@ -80,7 +68,7 @@
                                                                 data-widget_type="heading.default">
                                                                 <div class="elementor-widget-container">
                                                                     <h5 class="elementor-heading-title elementor-size-default">
-                                                                        2023
+                                                                        2024
                                                                     </h5>
                                                                 </div>
                                                             </div>

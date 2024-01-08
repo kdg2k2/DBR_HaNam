@@ -9,7 +9,7 @@
 ## Sử dụng Nasa forest fire api nhận thông tin điểm cháy trong khu vực để gửi mail cảnh báo cho người dùng và hiển thị trực quan trên bản đồ.
 
 3. Khó khăn gặp phải khi xây dựng hệ thống
-    - Cách tính chỉ số P và các điều kiện để đưa ra được cảnh báo cháy chính xác nhất
+    - Tính chỉ số P và các điều kiện để đưa ra được cảnh báo cháy chính xác nhất
     - Thu thập bản đồ shp file
     - Cài cắm geoserver
     - Chính sách Same Origin không cho phép đọc tài nguyên từ xa khi CORS header thiếu ‘Access-Control-Allow-Origin’ (Geoserver CORS missing allow origin)

@@ -18,8 +18,8 @@ class WebController extends Controller
         return view('pages.bando.bando');
     }
 
-    public function getLienhe(){
-        return view('pages.lienhe.lienhe');
-    }
+    // public function getLienhe(){
+    //     return view('pages.lienhe.lienhe');
+    // }
 
 }

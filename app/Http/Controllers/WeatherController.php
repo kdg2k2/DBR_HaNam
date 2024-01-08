@@ -16,14 +16,18 @@ class WeatherController extends Controller
     public function getIndex()
     {
         $listCommune = Commune::all();
+        // Key WetherAPI: fb5e5739643b498babf72107232011
+        $api = 'fb5e5739643b498babf72107232011';
+        $url = 'http://api.weatherapi.com/v1/history.json?key=' . $api . '&q=';
 
         foreach ($listCommune as $list) {
             $data['maxa'] = $list->maxa;
             $data['mahuyen'] = $list->mahuyen;
 
             $time_now = date('Y-m-d');
-            /* Key WetherAPI: fb5e5739643b498babf72107232011 */
-            $url_now = "http://api.weatherapi.com/v1/history.json?key=fb5e5739643b498babf72107232011&q=" . trim($list->vd) . "," . trim($list->kd) . "&dt=" . $time_now;
+
+            // Lượng mưa từ 0h->13h hôm nay
+            $url_now = $url . trim($list->vd) . "," . trim($list->kd) . "&dt=" . $time_now;
             $data_weather = $this->execute($url_now);
             $sum_luongmua_0h_13h = 0;
             for ($i = 0; $i < 14; $i++) {
@@ -32,28 +36,37 @@ class WeatherController extends Controller
                 }
             }
 
+            // Lượng mưa từ 13h hôm qua đến 0h hôm nay
             $sum_luongmua_13h_0h_ago = 0;
-            $date_ago = date('Y-m-d', strtotime(' +1 day'));
-            $url_ago = "http://api.weatherapi.com/v1/history.json?key=fb5e5739643b498babf72107232011&q=" . trim($list->vd) . "," . trim($list->kd) . "&dt=" . $date_ago;
+            $date_ago = date('Y-m-d', strtotime(' -1 day'));
+            $url_ago = $url . trim($list->vd) . "," . trim($list->kd) . "&dt=" . $date_ago;
             $data_weather_ago = $this->execute($url_ago);
-
             for ($i = 14; $i < 25; $i++) {
                 if (isset($data_weather_ago->forecast->forecastday[0]->hour[$i]->precip_mm)) {
                     $sum_luongmua_13h_0h_ago += $data_weather_ago->forecast->forecastday[0]->hour[$i]->precip_mm;
                 }
             }
 
+            // tổng lượng mưa 13h hqua đến 13h hôm nay
             $data['luongmua'] = $sum_luongmua_13h_0h_ago + $sum_luongmua_0h_13h;
             $data['thoigian'] = "'" . $time_now . "'";
             $data['nhietdo'] = $data_weather->forecast->forecastday[0]->hour[13]->temp_c;
             $data['doam'] = $data_weather->forecast->forecastday[0]->hour[13]->humidity;
             $data['tocdogio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_kph;
             $data['huonggio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_degree;
+
+            // độ ẩm bão hoà
             $E = 6.1 * pow(10, ((7.6 * $data['nhietdo']) / (242 + $data['nhietdo'])));
             $d = (100 - $data['doam']) / 100 * $E;
             $data['csp'] = 0;
             $data['capncc'] = 1;
             $data['d'] = $d;
+
+            // lượng mưa 3 ngày
+            // $data['dayrain3'] = 0;
+            // if($data['luongmua'] > 0){
+            //     $data['dayrain3']=;
+            // }
 
             Weather::insert($data);
             set_time_limit(300);
@@ -76,57 +89,65 @@ class WeatherController extends Controller
 
     public function calculateWarningLevel($maxa)
     {
-        $maxid = Weather::where('maxa', $maxa)->max('id');
-        $getDKLM = Weather::where('maxa', $maxa)->where('luongmua', '>', 5)->orderBy('id', 'desc')->first();
-        if (isset($getDKLM)) {
-            $listData = Weather::where('maxa', $maxa)->where('id', '>', $getDKLM->id)->where('id', '<=', $maxid)->get();
-        } else {
-            $listData = Weather::where('maxa', $maxa)->where('id', '>', 0)->where('id', '<=', $maxid)->get();
-        }
-        $p = 0;
-
-        foreach ($listData as $list) {
-            $p += $list->nhietdo * $list->d;
-        }
-        if ($p >= 0 && $p <= 1000) {
-            $level = 1;
-        } else if ($p > 1000 && $p < 2500) {
-            $level = 2;
-        } else if ($p > 2500 && $p < 5000) {
-            $level = 3;
-        } else if ($p > 5000 && $p < 10000) {
-            $level = 4;
-        } else {
-            $level = 5;
-        }
-
         $dateTime = "'" . now()->format('Y-m-d') . "'";
-        $infoUpdate = Weather::where('maxa', $maxa)->where('thoigian', $dateTime)->first();
-        $dateTimeAgo = "'" . date('Y-m-d', strtotime(' +1 day')) . "'";
-        $dateAgo = Weather::where('maxa', $maxa)->where('thoigian', $dateTimeAgo)->first();
+        $dateTimeAgo = "'" . date('Y-m-d', strtotime(' -1 day')) . "'";
 
-        // Tinh ngay khong mua lien tiep
-        if (isset($dateAgo)) {
-            $dayRain3Xa = $dateAgo->dayrain3;
+        $dayData = Weather::where('maxa', $maxa)->where('thoigian', $dateTime)->first();
+        if (isset($dayData)) {
+            $dayAgoData = Weather::where('maxa', $maxa)->where('thoigian', $dateTimeAgo)->first();
+            if (isset($dayAgoData)) {
+                $old_p = $dayAgoData->csp;
+            } else {
+                $old_p = 0;
+            }
 
-            if ($infoUpdate->luongmua > 0 && $infoUpdate->luongmua < 5) {
-                $dayRain3Xa =  $dayRain3Xa + 1;
+            //kiểm tra lượng mưa ngày để set chỉ số k
+            $k=1;
+            if($dayData->luongmua >= 5){
+                $k=0;
+            }
+
+            // tính chỉ số p
+            $now_p = $k * $dayData->nhietdo * $dayData->d;
+            $p = $now_p + $old_p;
+
+            if ($p >= 0 && $p <= 1000) {
+                $level = 1;
+            } else if ($p > 1000 && $p < 2500) {
+                $level = 2;
+            } else if ($p > 2500 && $p < 5000) {
+                $level = 3;
+            } else if ($p > 5000 && $p < 10000) {
+                $level = 4;
+            } else {
+                $level = 5;
+            }
+
+            $dateAgo = Weather::where('maxa', $maxa)->where('thoigian', $dateTimeAgo)->first();
+
+            // Tinh ngay khong mua lien tiep
+            if (isset($dateAgo)) {
+                $dayRain3Xa = $dateAgo->dayrain3;
+
+                if ($dayData->luongmua > 0 && $dayData->luongmua < 5) {
+                    $dayRain3Xa =  $dayRain3Xa + 1;
+                } else {
+                    $dayRain3Xa = 0;
+                }
             } else {
                 $dayRain3Xa = 0;
             }
-        } else {
-            $dayRain3Xa = 0;
-        }
 
-        if ($infoUpdate->luongmua >= 5 || $dayRain3Xa >= 3) {
-            $infoUpdate->csp = 0;
-            $infoUpdate->capncc = 1;
-        } else {
-            $infoUpdate->csp = $p;
-            $infoUpdate->capncc = $level;
-        }
+            if ($dayData->luongmua >= 5 || $dayRain3Xa >= 3) {
+                $dayData->csp = 0;
+                $dayData->capncc = 1;
+            } else {
+                $dayData->csp = $p;
+                $dayData->capncc = $level;
+            }
 
-        $infoUpdate->save();
+            $dayData->save();
+        }
     }
 
 
@@ -186,19 +207,19 @@ class WeatherController extends Controller
             $sheet->setCellValue('K' . ($i + 2), $csp);
             $sheet->setCellValue('L' . ($i + 2), $capncc);
         }
-        $writer = new Xlsx($spreadsheet);
-        $writer->save($fileName);
 
-        $getEmails = receiveEmail::where('firelevel', 1)->get();
+        $publicPath = public_path();
+        $filePath = $publicPath . '/weather_xlsx/' . $fileName;
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+
         $subject = "Số liệu KT các mức cảnh báo cấp độ cháy rừng " . now()->format('d-m-Y');
-        foreach ($getEmails as $item) {
-            Mail::send('web.mail', [], function ($mess) use ($subject, $fileName, $item) {
-                $mess->to(trim($item->email));
-                $mess->from('giamsatrunghanam@ifee.edu.vn', 'Hệ thống giám sát rừng tỉnh Hà Nam');
-                $mess->subject($subject);
-                $mess->attach('public/' . $fileName);
-            });
-        }
+        Mail::send('mail.capchay', [], function ($mess) use ($subject, $fileName) {
+            $mess->to('kdg2k2@gmail.com');
+            $mess->from('clonemail2k2@gmail.com', 'Hệ thống giám sát rừng tỉnh Hà Nam');
+            $mess->subject($subject);
+            $mess->attach('public/weather_xlsx/' . $fileName);
+        });
 
         return "Send Email Sucess";
     }
@@ -213,31 +234,6 @@ class WeatherController extends Controller
             set_time_limit(600);
         }
 
-        $rtn = dbr::whereBetween('maldlr', [1, 13])->get();
-        for ($i = 0; $i < count($rtn); $i++) {
-            $capchay = $data->where('maxa', $rtn[$i]->maxa)->first()->capncc;
-            if ($capchay > 1) {
-                $level = $capchay - 1;
-                dbr::where('gid', $rtn[$i]->gid)->update(['capchay' => $level]);
-            } else {
-                dbr::where('gid', $rtn[$i]->gid)->update(['capchay' => 1]);
-            }
-            set_time_limit(180);
-        }
-
-        $rungthong = dbr::where('sldlr', 'like', '%Thông%')->orWhere('sldlr', 'like', '%thông%')->orWhere('sldlr', 'like', '%thong%')->orWhere('sldlr', 'like', '%Thong%')->get();
-        for ($i = 0; $i < count($rungthong); $i++) {
-            $capchay_rthong = $data->where('maxa', $rungthong[$i]->maxa)->first()->capncc;
-            if ($capchay_rthong < 5) {
-                $level_up = $capchay_rthong + 1;
-                dbr::where('gid', $rungthong[$i]->gid)->update(['capchay' => $level_up]);
-            } else {
-                dbr::where('gid', $rungthong[$i]->gid)->update(['capchay' => 5]);
-            }
-            set_time_limit(180);
-        }
-
-        dbr::where('maldlr', 92)->orWhereBetween('lapdia', [3, 5])->update(['capchay' => 1]);
         return "Update Success";
     }
 }

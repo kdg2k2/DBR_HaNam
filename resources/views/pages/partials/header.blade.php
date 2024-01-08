@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-51dc745"
+                    {{-- <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-51dc745"
                         data-id="51dc745" data-element_type="column">
                         <div class="elementor-column-wrap elementor-element-populated">
                             <div class="elementor-widget-wrap">
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
@@ -141,7 +141,7 @@
                                                                 aria-hidden="true"
                                                                 class="icon-active fas fa-caret-down"></i></span></a>
                                                 </li>
-                                                <li
+                                                {{-- <li
                                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3351 depth-0">
                                                     <a href="/lienhe" data-level="1" class="@if(Request()->is('lienhe')) active-item @endif"><span
                                                             class="item-content"><span class="menu-item-text"><span
@@ -151,7 +151,7 @@
                                                                 class="open-button fas fa-caret-right"></i> <i
                                                                 aria-hidden="true"
                                                                 class="icon-active fas fa-caret-down"></i></span></a>
-                                                </li>
+                                                </li> --}}
                                             </ul>
                                         </nav>
                                     </div>
