@@ -23,9 +23,10 @@ Route::get('/lienhe', 'WebController@getLienhe');
 // Route::get("/sendEmail", "WeatherController@sendEmail");
 // Route::get("/updateDBR", "WeatherController@updateDBR");
 
-Route::get("district/{matinh}", "getRegion@getDistrict");
-Route::get("commune/{mahuyen}", "getRegion@getCommune");
+Route::get("/district/{matinh}", "getRegion@getDistrict");
+Route::get("/commune/{mahuyen}", "getRegion@getCommune");
 
 //ajax
-Route::get('ajax/getWeather/{maxa}', 'AjaxController@getWeatherCommune');
-Route::get('ajax/getFirePoints', 'AjaxController@getFirePoints');
+Route::get('/ajax/getWeather/{maxa}', 'AjaxController@getWeatherCommune');
+Route::get('/ajax/getFirePoints', 'AjaxController@getFirePoints');
+Route::get('/ajax/getHistoryFirePoints', 'AjaxController@getHistoryFirePoints');

@@ -1,9 +1,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Diến Biến Rừng Hà Nam</title>
+<title>Cảnh Báo Cháy Rừng Hà Nam</title>
 
-<script type="text/javascript" src="/winery/wp-content/cache/fvm/min/main.js" charset="UTF-8"></script>
 <script data-cfasync="false">
     function dtmuag() {
             var e = navigator.userAgent;
@@ -178,13 +177,6 @@
         FVMLoader.run();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<title>The7 Winery &#8211; Perfect solution for winery, brewery or distillery </title>
-<meta name="robots" content="max-image-preview:large" />
-<meta property="og:site_name" content="The7 Winery" />
-<meta property="og:title" content="Home" />
-<meta property="og:description"
-    content="Seven Winery Napa Valley est. 2001 Our Story Our Terroirs Our Wines Chardonnay 2021 &#036;15.00 &#036;9.99Add to cart Merlot Rose 2021 &#036;25.00Add to cart Sauvignon Blanc 2021 &#036;10.00Add to cart Merlot 2021 &#036;33.00Add to cart Cabernet Sauvignon 2021 &#036;39.00Add to cart Seven case #1 &#036;59.99Add to cart Seven case #2 &#036;65.00Add to cart Our Experiences&hellip;" />
-<meta property="og:type" content="website" />
 <link rel="preload" fetchpriority="low" id="fvmfonts-css"
     href="/winery/wp-content/cache/fvm/min/1702991737-css640a17f040779b825e17804d4e9944bbe0f55d8cc49ca8d8eb31d3b0c8c8c.css"
     as="style" media="all" onload="this.rel='stylesheet';this.onload=null">
@@ -273,7 +265,6 @@
             });
         }
 </script>
-<link rel="profile" href="https://gmpg.org/xfn/11" />
 <script id="the7-cloudflare-mobile-menu-fix">
     document.addEventListener("DOMContentLoaded", function (event) {
             var mobileMenuImages = document.body.querySelectorAll("#mobile-menu img");
@@ -347,32 +338,32 @@
 <script id="dt-above-fold-js-extra">
     /* <![CDATA[ */
         var dtLocal = {
-            "themeUrl": "https:\/\/the7.io\/winery\/wp-content\/themes\/dt-the7",
-            "passText": "To view this protected post, enter the password below:",
-            "moreButtonText": {
-                "loading": "Loading...",
-                "loadMore": "Load more"
-            },
-            "postID": "10",
-            "ajaxurl": "https:\/\/the7.io\/winery\/wp-admin\/admin-ajax.php",
-            "REST": {
-                "baseUrl": "https:\/\/the7.io\/winery\/wp-json\/the7\/v1",
-                "endpoints": {
-                    "sendMail": "\/send-mail"
-                }
-            },
-            "contactMessages": {
-                "required": "One or more fields have an error. Please check and try again.",
-                "terms": "Please accept the privacy policy.",
-                "fillTheCaptchaError": "Please, fill the captcha."
-            },
-            "captchaSiteKey": "",
-            "ajaxNonce": "cbfa29d6ed",
-            "pageData": {
-                "type": "page",
-                "template": "page",
-                "layout": null
-            },
+            // "themeUrl": "https:\/\/the7.io\/winery\/wp-content\/themes\/dt-the7",
+            // "passText": "To view this protected post, enter the password below:",
+            // "moreButtonText": {
+            //     "loading": "Loading...",
+            //     "loadMore": "Load more"
+            // },
+            // "postID": "10",
+            // "ajaxurl": "https:\/\/the7.io\/winery\/wp-admin\/admin-ajax.php",
+            // "REST": {
+            //     "baseUrl": "https:\/\/the7.io\/winery\/wp-json\/the7\/v1",
+            //     "endpoints": {
+            //         "sendMail": "\/send-mail"
+            //     }
+            // },
+            // "contactMessages": {
+            //     "required": "One or more fields have an error. Please check and try again.",
+            //     "terms": "Please accept the privacy policy.",
+            //     "fillTheCaptchaError": "Please, fill the captcha."
+            // },
+            // "captchaSiteKey": "",
+            // "ajaxNonce": "cbfa29d6ed",
+            // "pageData": {
+            //     "type": "page",
+            //     "template": "page",
+            //     "layout": null
+            // },
             "themeSettings": {
                 "smoothScroll": "off",
                 "lazyLoading": false,
@@ -385,11 +376,11 @@
                     "showAfter": 94,
                     "showMenu": false,
                     "height": 64,
-                    "logo": {
-                        "showLogo": true,
-                        "html": "",
-                        "url": "https:\/\/the7.io\/winery\/"
-                    }
+                    // "logo": {
+                    //     "showLogo": true,
+                    //     "html": "",
+                    //     "url": "https:\/\/the7.io\/winery\/"
+                    // }
                 },
                 "topLine": {
                     "floatingTopLine": {
@@ -422,20 +413,20 @@
                 },
                 "boxedWidth": "1280px"
             },
-            "wcCartFragmentHash": "f5602a881c4bb24fc814d53bddc14b97",
-            "elementor": {
-                "settings": {
-                    "container_width": 1300
-                }
-            }
+            // "wcCartFragmentHash": "f5602a881c4bb24fc814d53bddc14b97",
+            // "elementor": {
+            //     "settings": {
+            //         "container_width": 1300
+            //     }
+            // }
         };
         var dtShare = {
             "shareButtonText": {
-                "facebook": "Share on Facebook",
-                "twitter": "Tweet",
-                "pinterest": "Pin it",
-                "linkedin": "Share on Linkedin",
-                "whatsapp": "Share on Whatsapp"
+                // "facebook": "Share on Facebook",
+                // "twitter": "Tweet",
+                // "pinterest": "Pin it",
+                // "linkedin": "Share on Linkedin",
+                // "whatsapp": "Share on Whatsapp"
             },
             "overlayOpacity": "90"
         };
@@ -449,7 +440,7 @@
     </style>
 </noscript>
 <link rel="icon" href="{{ asset('/img/logo/kdg_logo.jpg') }}" sizes="192x192" />
-<script>
+{{-- <script>
     window.psicheck = function () {
             var check = false;
 
@@ -474,7 +465,7 @@
             ga('create', 'UA-90553574-1', 'auto');
             ga('send', 'pageview');
         }
-</script>
+</script> --}}
 <style id="the7-custom-inline-css" type="text/css" media="all">
     .sub-nav .menu-item i.fa,
     .sub-nav .menu-item i.fas,
@@ -485,8 +476,7 @@
     }
 </style>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
 <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('/css/app.css') }}"> --}}

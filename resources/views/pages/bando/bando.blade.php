@@ -69,17 +69,17 @@
 
                 <div id="fireFilter" hidden>
                     <h5 class="bangdieukhien" style="margin-top: 20px;"><i class="fa fa-solid fa-clock-rotate-left"></i> LỊCH SỬ ĐIỂM CHÁY</h5>
-                <div style="margin-left: 18px;">
+                <div style="margin-left: 18px; display: grid;">
                     <div class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" id="24h">
-                        <label class="form-check-label" style="font-weight: normal;">24h qua</label>
+                        <label class="form-check-label" style="font-weight: normal;" for="24h">24h qua</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" id="history">
-                        <label class="form-check-label" style="font-weight: normal;">Lịch sử theo thời
+                        <label class="form-check-label" style="font-weight: normal;" for="history">Lịch sử theo thời
                             gian</label>
                     </div>
-                    <div class="row hidden" id="selectDate">
+                    <div class="row" id="selectDate" hidden>
                         <div class="col-md-6">
                             <label>Từ ngày</label><br>
                             <input class="form-control" type="date" name="startDate" id="startDate"

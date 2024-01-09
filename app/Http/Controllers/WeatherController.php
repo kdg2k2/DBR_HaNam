@@ -253,7 +253,7 @@ class WeatherController extends Controller
                     }
                 }
             }
-            print_r('Số mail cảnh báo cháy từ Nasa: '. count($push_data));
+            print_r('Số mail cảnh báo cháy từ Nasa: '. count($push_data) .'\n');
 
             $tableName = "hanam_dbr";
             for ($i = 0; $i < count($push_data); $i++) {

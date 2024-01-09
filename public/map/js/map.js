@@ -140,9 +140,8 @@ $(document).ready(function () {
     }
 });
 
-/*
-    Hien thi WMS
-*/
+// Hien thi WMS
+
 function fnShowMapRG(layerName, strFilter) {
     if (layerName == undefined) {
         alert("Không tìm thấy lớp bản đồ");
@@ -349,26 +348,57 @@ $("#bandoCapChay").change(function (event) {
 
 $("#diemChay").change(function () {
     if ($("#diemChay").is(":checked")) {
-        $('#fireFilter').attr('hidden', false);
+        $("#fireFilter").attr("hidden", false);
 
-        if($("#24h").is(":checked")){
-            $('#history').prop('checked', false);
-            
-            $.ajax({
-                method: "GET",
-                url: "ajax/getFirePoints",
-            }).done(function (data) {
-                renFirePoint(data.data);
-            });
-        }else{
-            console.log($('#history'));
-            markerGroup.clearLayers();
-        }
-    }else{
-        $('#fireFilter').attr('hidden', true);
+        $("#24h").change(function () {
+            if ($("#24h").is(":checked")) {
+                $("#history").prop("checked", false);
+                $("#selectDate").attr("hidden", true);
+                markerGroup.clearLayers();
+
+                $.ajax({
+                    method: "GET",
+                    url: "/ajax/getFirePoints",
+                }).done(function (data) {
+                    console.log(data);
+                    renFirePoint(data);
+                });
+            } else {
+                markerGroup.clearLayers();
+            }
+        });
+
+        $("#history").change(function () {
+            if ($("#history").is(":checked")) {
+                $("#24h").prop("checked", false);
+                markerGroup.clearLayers();
+                $("#selectDate").attr("hidden", false);
+                loadData();
+            } else {
+                markerGroup.clearLayers();
+                $("#selectDate").attr("hidden", true);
+                $("#startDate").val('');
+                $("#endDate").val('');
+            }
+        });
+    } else {
+        $("#fireFilter").attr("hidden", true);
         markerGroup.clearLayers();
     }
 });
+
+function loadData() {
+    markerGroup.clearLayers();
+    var start = $("#startDate").val();
+    var end = $("#endDate").val();
+    $.ajax({
+        method: "GET",
+        url: "/ajax/getHistoryFirePoints",
+        data: { startDate: start, endDate: end },
+    }).done(function (data) {
+        renFirePoint(data);
+    });
+}
 
 function renFirePoint(listPoint) {
     if (listPoint.length > 0) {

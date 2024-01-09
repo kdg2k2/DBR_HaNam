@@ -16,16 +16,28 @@ class AjaxController extends Controller
         return $data;
     }
 
-    public function getFirePoints(){
-        $data = FirePoint::all();
-
-        foreach($data as $item){
+    public function getFirePoints()
+    {
+        $now = now()->format('Y-m-d');
+        $ago_date = date('Y-m-d', strtotime('+1 days ago'));
+        
+        $data = FirePoint::whereBetween('acq_date', [$now, $ago_date])->get();
+        foreach ($data as $item) {
             $item->xa = Commune::where('maxa', $item->maxa)->first()->xa;
             $item->huyen = Commune::where('maxa', $item->maxa)->first()->district->huyen;
         }
+        return $data;
+    }
 
-        return response()->json([
-            'data' => $data,
-        ]);
+    public function getHistoryFirePoints(Request $request)
+    {
+        $start = $request->startDate;
+        $end = $request->endDate;
+        $data = FirePoint::whereBetween('acq_date', [$start, $end])->get();
+        foreach ($data as $item) {
+            $item->xa = Commune::where('maxa', $item->maxa)->first()->xa;
+            $item->huyen = Commune::where('maxa', $item->maxa)->first()->district->huyen;
+        }
+        return $data;
     }
 }

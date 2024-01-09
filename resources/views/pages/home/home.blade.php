@@ -36,7 +36,7 @@
                                     <section
                                         class="elementor-section elementor-top-section elementor-element elementor-element-d57b931 elementor-section-full_width elementor-section-height-min-height elementor-section-items-stretch elementor-section-height-default elementor-invisible"
                                         data-id="d57b931" data-element_type="section"
-                                        data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:2509,&quot;url&quot;:&quot;\/winery\/wp-content\/uploads\/sites\/80\/2021\/05\/w-bg215.jpg&quot;},{&quot;id&quot;:2511,&quot;url&quot;:&quot;\/winery\/wp-content\/uploads\/sites\/80\/2021\/05\/w-bg219.jpg&quot;},{&quot;id&quot;:2511,&quot;url&quot;:&quot;\/winery\/wp-content\/uploads\/sites\/80\/2021\/05\/w-bg005.jpg&quot;},{&quot;id&quot;:2511,&quot;url&quot;:&quot;\/winery\/wp-content\/uploads\/sites\/80\/2021\/05\/w-bg006.jpg&quot;}],&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_transition_duration&quot;:500,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;,&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}">
+                                        data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[{&quot;id&quot;:2509,&quot;url&quot;:&quot;\/img\/hanam\/1.jpg&quot;},{&quot;id&quot;:2509,&quot;url&quot;:&quot;\/img\/hanam\/2.jpg&quot;}],&quot;background_slideshow_ken_burns&quot;:&quot;yes&quot;,&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_transition_duration&quot;:500,&quot;background_slideshow_ken_burns_zoom_direction&quot;:&quot;in&quot;,&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}">
                                         <div class="elementor-background-overlay"></div>
                                         <div class="elementor-container elementor-column-gap-default">
                                             <div class="elementor-row">
@@ -50,7 +50,7 @@
                                                                 data-widget_type="heading.default">
                                                                 <div class="elementor-widget-container">
                                                                     <h1 class="elementor-heading-title elementor-size-default">
-                                                                        Diễn Biến Rừng Hà Nam
+                                                                        Cảnh Báo Cháy Rừng Hà Nam
                                                                     </h1>
                                                                 </div>
                                                             </div>
