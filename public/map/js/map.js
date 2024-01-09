@@ -96,6 +96,9 @@ map.overlaysDBR = L.layerGroup([]).addTo(map);
 map.overlaysFireMap = L.layerGroup([]).addTo(map);
 map.overlaysPoint = L.layerGroup([]).addTo(map);
 
+// Group layer
+var markerGroup = L.markerClusterGroup();
+
 //Tham so lop ban do ranh gioi hanh chinh
 var layerCurrent = null;
 var WMS_RANHGIOI_URL = "http://localhost:8080/geoserver/rghc_vn_2023/wms";
@@ -403,8 +406,9 @@ function renFirePoint(listPoint) {
                 </table>
                 `
             );
-            marker.addTo(map);
+            markerGroup.addLayer(marker);
         });
+        map.addLayer(markerGroup);
     }
 }
 
