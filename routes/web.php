@@ -28,3 +28,4 @@ Route::get("commune/{mahuyen}", "getRegion@getCommune");
 
 //ajax
 Route::get('ajax/getWeather/{maxa}', 'AjaxController@getWeatherCommune');
+Route::get('ajax/getFirePoints', 'AjaxController@getFirePoints');

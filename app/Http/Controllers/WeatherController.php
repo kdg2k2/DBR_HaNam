@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Commune;
 use App\dbr;
-use App\Hotspot;
+use App\FirePoint;
 use App\Weather;
 use DateTime;
 use DateTimeZone;
@@ -267,9 +267,9 @@ class WeatherController extends Controller
                 
                 $data = DB::select("select gid,maxa,xa,huyen,tk,khoanh,lo,ldlr,maldlr,churung from " . $tableName . " where ST_Intersects(" . $tableName . ".geom, 'SRID=4326;POINT(" . $lon . " " . $lat . ")'::geography)");
                 if (count($data) > 0) {
-                    $checkExsit = Hotspot::where('latitude', $lat)->where('longitude', $lon)->where('acq_date', $acq_date)->where('acq_time', $acq_time)->get();
+                    $checkExsit = FirePoint::where('latitude', $lat)->where('longitude', $lon)->where('acq_date', $acq_date)->where('acq_time', $acq_time)->get();
                     if (count($checkExsit) == 0) {
-                        $new = new Hotspot();
+                        $new = new FirePoint();
                         $new->maxa = $data[0]->maxa;
                         $new->tk = $data[0]->tk;
                         $new->khoanh = $data[0]->khoanh;

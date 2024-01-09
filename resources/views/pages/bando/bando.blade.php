@@ -9,14 +9,22 @@
     <link rel="icon" href="{{ asset('/img/logo/kdg_logo.jpg') }}" sizes="192x192" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="{{ asset('/map/css/map.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+
+    <style>
+        .leaflet-popup-content{
+            min-width: 280px !important;
+        }
+    </style>
 </head>
 
 <body>
     <div id="map"></div>
-    <img style="height: 12vh; bottom: 0; position: absolute; z-index: 2; margin-bottom: 20px ; margin-left: 10px; visibility: hidden; right: 0;" src="{{ asset('/map/images/fireWarningIcon/alarm.png') }}" id="fireWarningImg">
+    <img style="height: 18vh; bottom: 0; position: absolute; z-index: 2; margin-bottom: 20px ; margin-left: 10px; visibility: hidden; right: 0;" src="{{ asset('/map/images/fireWarningIcon/alarm.png') }}" id="fireWarningImg">
 
     <div id="menu-map" class="menu-map">
         <div class="close-menu-map">
@@ -53,13 +61,13 @@
                         <input type="checkbox" class="form-check-input" id="bandoCapChay">
                         <label class="form-check-label" style="font-weight: normal;" for="bandoCapChay"> Cấp cháy</label>
                     </div>
-                    <!-- <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" id="diemChay" checked>
                         <label class="form-check-label" style="font-weight: normal;">Điểm nguy cơ cháy rừng</label>
-                    </div> -->
+                    </div>
                 </div>
 
-                <!-- <h5 class="bangdieukhien" style="margin-top: 20px;"><i class="fa fa-solid fa-clock-rotate-left"></i> LỊCH SỬ ĐIỂM CHÁY</h5>
+                {{-- <h5 class="bangdieukhien" style="margin-top: 20px;"><i class="fa fa-solid fa-clock-rotate-left"></i> LỊCH SỬ ĐIỂM CHÁY</h5>
                 <div style="margin-left: 18px;">
                     <div class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" id="24h" checked>
@@ -85,8 +93,8 @@
                 </div>
                 <br>
                 <div class="form-check table-responsive" id="infoFirePoint"
-                    style="max-height: 550px; overflow: scroll;">
-                </div> -->
+                    style="max-height: 550px;">
+                </div> --}}
             </div>
         </div>
     </div>

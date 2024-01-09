@@ -113,8 +113,8 @@ var currentCode = 35;
 var listFirePoint = null;
 
 $(document).ready(function () {
-    $('select').val('');
-    $('input[type="checkbox"]').prop('checked', false);
+    $("select").val("");
+    $('input[type="checkbox"]').prop("checked", false);
 
     var matinh = "35";
     //LayDanhSachHuyen
@@ -132,10 +132,9 @@ $(document).ready(function () {
     //set tham so cho lop ban do wms
     if (currentMapType) {
         currentProvinceSelect = matinh;
-        cleanViewTNR()
+        cleanViewTNR();
         checkedWMSLayer(currentMapType, "matinh", matinh);
     }
-
 });
 
 /*
@@ -209,7 +208,7 @@ function checkedWMSLayer(mapType, regionLevel, regionCode) {
             `${regionLevel}=${regionCode}`,
             dataWMS.style
         );
-        wmsL.setZIndex(100); 
+        wmsL.setZIndex(100);
         map.overlaysDBR.addLayer(wmsL);
         currentLayer = dataWMS.name_layer;
         currentFillter = `${regionLevel}=${regionCode}`;
@@ -277,7 +276,6 @@ function getFeatureInfoUrl(_latlng, _layerName, _wmsURL, _cqlFillter) {
     params[params.version === "1.3.0" ? "i" : "x"] = Math.round(point.x);
     params[params.version === "1.3.0" ? "j" : "y"] = Math.round(point.y);
 
-    var test = _wmsURL + L.Util.getParamString(params, _wmsURL, true);
     return _wmsURL + L.Util.getParamString(params, _wmsURL, true);
 }
 
@@ -304,7 +302,7 @@ $("#district").change(function () {
     currentLevel = "mahuyen";
     currentCode = mahuyen;
     //set tham so cho lop ban do wms
-    cleanViewTNR()
+    cleanViewTNR();
     checkedWMSLayer(currentMapType, "mahuyen", mahuyen);
 });
 
@@ -317,7 +315,7 @@ $("#commune").change(function () {
     fnShowMapRG(nameLayer, sqlFilter);
     currentLevel = "maxa";
     currentCode = maxa;
-    cleanViewTNR()
+    cleanViewTNR();
     checkedWMSLayer(currentMapType, "maxa", maxa);
 });
 
@@ -329,7 +327,7 @@ $("#bandoDBR").change(function (event) {
         checkedWMSLayer(currentMapType, currentLevel, currentCode);
     } else {
         cleanViewTNR();
-        currentMapType=null;
+        currentMapType = null;
     }
 });
 
@@ -341,14 +339,76 @@ $("#bandoCapChay").change(function (event) {
         checkedWMSLayer(currentMapType, currentLevel, currentCode);
     } else {
         cleanViewTNR();
-        currentMapType=null;
+        currentMapType = null;
         $("#fireWarningImg").css("visibility", "hidden");
     }
 });
 
-/*
-    Lấy thông tin lớp bản đồ
-*/
+$("#diemChay").change(function () {
+    if ($("#diemChay").is(":checked")) {
+        $.ajax({
+            method: "GET",
+            url: "ajax/getFirePoints",
+        }).done(function (data) {
+            console.log(data.data);
+            renFirePoint(data.data);
+        });
+    }
+});
+
+function renFirePoint(listPoint) {
+    if (listPoint.length > 0) {
+        listPoint.forEach(function (point) {
+            var icon = L.icon({
+                iconUrl: "/map/images/fireIcon/fire.png",
+                iconSize: [35, 35],
+                iconAnchor: [15, 15],
+                popupAnchor: [0, -12],
+            });
+
+            var marker = L.marker(
+                new L.LatLng(point.latitude, point.longitude),
+                {
+                    icon: icon,
+                }
+            );
+            marker.id = point.id;
+            marker.bindPopup(
+                `
+                <table class='table'>
+                    <thead style='font-size: 14px'>
+                        <tr>
+                            <th class="col-4" style="font-size: 13px; border-bottom: 2px solid #333; color:#000; background:none; padding:0; border-top:none; width: 300px">Thuộc tính</th>
+                            <th class="col-8" style="font-size: 13px; border-bottom: 2px solid #333; color:#000; background:none; padding:0; border-top:none">Thông tin</th>
+                        </tr>
+                    </thead>
+                    <tbody id='popup_content' style='font-size: 12px'> 
+                        <tr>
+                            <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Huyện/ Xã</td>
+                            <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;"> ${point.huyen}/ ${point.xa}</td>
+                        </tr> 
+                        <tr>
+                            <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Tk/ Khoảnh/ Lô</td>
+                            <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;"> ${point.tk}/ ${point.khoanh}/ ${point.lo}</td>
+                        </tr> 
+                        <tr>
+                            <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Độ sáng</td>
+                            <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;"> ${point.brightness}</td>
+                        </tr> 
+                        <tr>
+                            <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Thời gian phát hiện</td>
+                            <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;"> ${point.acq_time} ${point.acq_date}</td>
+                        </tr> 
+                    </tbody>
+                </table>
+                `
+            );
+            marker.addTo(map);
+        });
+    }
+}
+
+// Lấy thông tin lớp bản đồ
 map.on("click", function (e) {
     if ($("#bandoDBR").is(":checked") || $("#bandoCapChay").is(":checked")) {
         infoURL = getFeatureInfoUrl(
@@ -366,9 +426,10 @@ map.on("click", function (e) {
                     "map/images/fireWarningIcon/level" + info.capchay + ".png"
                 );
 
-                var popup = L.popup()
+                L.popup()
                     .setLatLng(e.latlng)
-                    .setContent(`
+                    .setContent(
+                        `
                         <table class='table'>
                             <thead style='font-size: 14px'>
                                 <tr>
@@ -379,56 +440,91 @@ map.on("click", function (e) {
                             <tbody id='popup_content' style='font-size: 12px'> 
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Huyện/ Xã</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;"> ${info.huyen}/ ${info.xa}</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;"> ${
+                                        info.huyen
+                                    }/ ${info.xa}</td>
                                 </tr> 
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Tiểu khu/ Khoảnh/ Lô</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;"> ${info.tk}/ ${info.khoanh}/ ${info.lo}</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;"> ${
+                                        info.tk
+                                    }/ ${info.khoanh}/ ${info.lo}</td>
                                 </tr> 
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Chủ rừng</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${info.churung != undefined ? info.churung : ''}</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${
+                                        info.churung != undefined
+                                            ? info.churung
+                                            : ""
+                                    }</td>
                                 </tr> 
                                  
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Trạng thái rừng</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${info.ldlr != undefined ? getLDLR(info.ldlr) : ''}</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${
+                                        info.ldlr != undefined
+                                            ? getLDLR(info.ldlr)
+                                            : ""
+                                    }</td>
                                 </tr> 
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Loài cây/Cấp tuổi/Năm trồng</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${info.sldlr}/${info.namtr}/${info.captuoi}</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${
+                                        info.sldlr
+                                    }/${info.namtr}/${info.captuoi}</td>
                                 </tr> 
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Diện tích</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${info.dtich != undefined ? info.dtich : ''} ha</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${
+                                        info.dtich != undefined
+                                            ? info.dtich
+                                            : ""
+                                    } ha</td>
                                 </tr>
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Trữ lượng</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${info.mgolo != undefined ? info.mgolo : ''} m3</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${
+                                        info.mgolo != undefined
+                                            ? info.mgolo
+                                            : ""
+                                    } m3</td>
                                 </tr>
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Ba loại rừng</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${info.malr3 != undefined ? get3LR(info.malr3) : ''}</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${
+                                        info.malr3 != undefined
+                                            ? get3LR(info.malr3)
+                                            : ""
+                                    }</td>
                                 </tr> 
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Lập địa</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${info.lapdia != undefined ? getLapDia(info.lapdia) : ''}</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${
+                                        info.lapdia != undefined
+                                            ? getLapDia(info.lapdia)
+                                            : ""
+                                    }</td>
                                 </tr>
                                 <tr>
                                     <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Mục đích sử dụng</td>
-                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${info.mamdsd != undefined ? getMDST(info.mamdsd) : ''}</td>
+                                    <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${
+                                        info.mamdsd != undefined
+                                            ? getMDST(info.mamdsd)
+                                            : ""
+                                    }</td>
                                 </tr> 
                             </tbody>
                         </table>
-                    `)
-                .openOn(map);
+                        `
+                    )
+                    .openOn(map);
 
                 $.ajax({
                     method: "GET",
                     url: "ajax/getWeather/" + info.maxa,
                 }).done(function (dt) {
                     var weather = dt[0];
-                    $('#popup_content').append(`
+                    $("#popup_content").append(`
                         <tr>
                             <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Nhiệt độ</td>
                             <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${weather.nhietdo}°C</td>
@@ -445,7 +541,7 @@ map.on("click", function (e) {
                             <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">Chỉ số P</td>
                             <td style="background: none; color: #000; font-size: 12px; border-bottom: 1px solid #cfcfcf; padding: 8px;">${weather.csp}</td>
                         </tr> 
-                    `)
+                    `);
                 });
             } else {
                 cleanViewTNR();
@@ -454,7 +550,7 @@ map.on("click", function (e) {
     }
 });
 
-//Lay thong tin ban do
+// dịch ký hiệu bản đồ
 function getLDLR(maLRLR) {
     var ldlrString = "";
     for (var i = 0; i < LDLR_MA_TRANG_THAI.length; i++) {
