@@ -58,13 +58,14 @@ class WeatherController extends Controller
             $data['doam'] = $data_weather->forecast->forecastday[0]->hour[13]->humidity;
             $data['tocdogio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_kph;
             $data['huonggio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_degree;
-
-            // độ ẩm bão hoà
-            $E = 6.1 * pow(10, ((7.6 * $data['nhietdo']) / (242 + $data['nhietdo'])));
-            $d = (100 - $data['doam']) / 100 * $E;
             $data['csp'] = 0;
             $data['capncc'] = 1;
-            $data['d'] = $d;
+
+            // độ ẩm bão hoà
+            // $E = 6.1 * pow(10, ((7.6 * $data['nhietdo']) / (242 + $data['nhietdo'])));
+            // $d = (100 - $data['doam']) / 100 * $E;
+            // $data['d'] = $d;
+            $data['d'] = $this->get_D(round($data['nhietdo']));
 
             Weather::insert($data);
             set_time_limit(300);
@@ -84,6 +85,155 @@ class WeatherController extends Controller
         return "Update Sucess";
     }
 
+    public function get_D($val)
+    {
+        $bang_tra_d = [
+            87 => 0.0004,
+            86 => 0.0004,
+            85 => 0.0005,
+            84 => 0.0006,
+            83 => 0.0007,
+            82 => 0.0009,
+            81 => 0.001,
+            80 => 0.0012,
+            79 => 0.0014,
+            78 => 0.0016,
+            77 => 0.0019,
+            76 => 0.0022,
+            75 => 0.0026,
+            74 => 0.003,
+            73 => 0.0034,
+            72 => 0.004,
+            71 => 0.0046,
+            70 => 0.0053,
+            69 => 0.006,
+            68 => 0.0069,
+            67 => 0.0079,
+            66 => 0.009,
+            65 => 0.0103,
+            64 => 0.0117,
+            63 => 0.0133,
+            62 => 0.0151,
+            61 => 0.0171,
+            60 => 0.0193,
+            59 => 0.0218,
+            58 => 0.0246,
+            57 => 0.0277,
+            56 => 0.0312,
+            55 => 0.0351,
+            54 => 0.0442,
+            53 => 0.0442,
+            52 => 0.0494,
+            51 => 0.0553,
+            50 => 0.0617,
+            49 => 0.0689,
+            48 => 0.0767,
+            47 => 0.0853,
+            46 => 0.095,
+            45 => 0.106,
+            44 => 0.117,
+            43 => 0.13,
+            42 => 0.144,
+            41 => 0.159,
+            40 => 0.176,
+            39 => 0.194,
+            38 => 0.214,
+            37 => 0.236,
+            36 => 0.26,
+            35 => 0.286,
+            34 => 0.314,
+            33 => 0.345,
+            32 => 0.378,
+            31 => 0.414,
+            30 => 0.453,
+            29 => 0.496,
+            28 => 0.542,
+            27 => 0.592,
+            26 => 0.646,
+            25 => 0.705,
+            24 => 0.768,
+            23 => 0.863,
+            22 => 0.909,
+            21 => 0.989,
+            20 => 1.07,
+            19 => 1.17,
+            18 => 1.26,
+            17 => 1.37,
+            16 => 1.48,
+            15 => 1.61,
+            14 => 1.74,
+            13 => 1.88,
+            12 => 2.03,
+            11 => 2.19,
+            10 => 2.36,
+            9 => 2.54,
+            8 => 2.74,
+            7 => 2.95,
+            6 => 3.17,
+            5 => 3.41,
+            4 => 3.66,
+            3 => 3.93,
+            2 => 4.22,
+            1 => 4.52,
+            0 => 4.85,
+            1 => 5.19,
+            2 => 5.56,
+            3 => 5.95,
+            4 => 6.36,
+            5 => 6.79,
+            6 => 7.26,
+            7 => 7.75,
+            8 => 8.27,
+            9 => 8.82,
+            10 => 9.4,
+            11 => 10,
+            12 => 10.7,
+            13 => 11.3,
+            14 => 12.1,
+            15 => 12.8,
+            16 => 13.6,
+            17 => 14.5,
+            18 => 15.4,
+            19 => 16.3,
+            20 => 17.3,
+            21 => 18.3,
+            22 => 19.4,
+            23 => 20.6,
+            24 => 21.8,
+            25 => 23,
+            26 => 24.4,
+            27 => 25.8,
+            28 => 27.2,
+            29 => 28.7,
+            30 => 30.3,
+            31 => 32,
+            32 => 33.8,
+            33 => 35.6,
+            34 => 37.5,
+            35 => 39.6,
+            36 => 41.7,
+            37 => 43.9,
+            38 => 46.2,
+            39 => 48.6,
+            40 => 51.5,
+            41 => 53.7,
+            42 => 56.4,
+            43 => 59.3,
+            44 => 62.2,
+            45 => 65.3,
+            46 => 68.5,
+            47 => 71.9,
+            48 => 75.4,
+            49 => 79,
+            50 => 82.8,
+        ];
+
+        if(isset($bang_tra_d[$val])){
+            return $bang_tra_d[$val];
+        }
+        
+        return 0;
+    }
 
     public function calculateWarningLevel($maxa)
     {
@@ -99,9 +249,9 @@ class WeatherController extends Controller
             }
 
             //kiểm tra lượng mưa ngày để set chỉ số k
-            $k=1;
-            if($dayData->luongmua >= 5){
-                $k=0;
+            $k = 1;
+            if ($dayData->luongmua >= 5) {
+                $k = 0;
             }
 
             // tính chỉ số p
@@ -253,7 +403,7 @@ class WeatherController extends Controller
                     }
                 }
             }
-            print_r('Số mail cảnh báo cháy từ Nasa: '. count($push_data) .'\n');
+            print_r('Số mail cảnh báo cháy từ Nasa: ' . count($push_data));
 
             $tableName = "hanam_dbr";
             for ($i = 0; $i < count($push_data); $i++) {
@@ -264,7 +414,7 @@ class WeatherController extends Controller
                 $dt_convert = $this->convertDateTime($push_data[$i][5] . " " . $push_data[$i][6]);
                 $acq_date = explode(" ", $dt_convert)[0];
                 $acq_time = explode(" ", $dt_convert)[1];
-                
+
                 $data = DB::select("select gid,maxa,xa,huyen,tk,khoanh,lo,ldlr,maldlr,churung from " . $tableName . " where ST_Intersects(" . $tableName . ".geom, 'SRID=4326;POINT(" . $lon . " " . $lat . ")'::geography)");
                 if (count($data) > 0) {
                     $checkExsit = FirePoint::where('latitude', $lat)->where('longitude', $lon)->where('acq_date', $acq_date)->where('acq_time', $acq_time)->get();
