@@ -349,13 +349,24 @@ $("#bandoCapChay").change(function (event) {
 
 $("#diemChay").change(function () {
     if ($("#diemChay").is(":checked")) {
-        $.ajax({
-            method: "GET",
-            url: "ajax/getFirePoints",
-        }).done(function (data) {
-            console.log(data.data);
-            renFirePoint(data.data);
-        });
+        $('#fireFilter').attr('hidden', false);
+
+        if($("#24h").is(":checked")){
+            $('#history').prop('checked', false);
+            
+            $.ajax({
+                method: "GET",
+                url: "ajax/getFirePoints",
+            }).done(function (data) {
+                renFirePoint(data.data);
+            });
+        }else{
+            console.log($('#history'));
+            markerGroup.clearLayers();
+        }
+    }else{
+        $('#fireFilter').attr('hidden', true);
+        markerGroup.clearLayers();
     }
 });
 

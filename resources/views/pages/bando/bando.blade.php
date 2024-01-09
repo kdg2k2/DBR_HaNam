@@ -62,15 +62,16 @@
                         <label class="form-check-label" style="font-weight: normal;" for="bandoCapChay"> Cấp cháy</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" class="form-check-input" id="diemChay" checked>
-                        <label class="form-check-label" style="font-weight: normal;">Điểm nguy cơ cháy rừng</label>
+                        <input type="checkbox" class="form-check-input" id="diemChay">
+                        <label class="form-check-label" style="font-weight: normal;" for="diemChay">Điểm nguy cơ cháy rừng</label>
                     </div>
                 </div>
 
-                {{-- <h5 class="bangdieukhien" style="margin-top: 20px;"><i class="fa fa-solid fa-clock-rotate-left"></i> LỊCH SỬ ĐIỂM CHÁY</h5>
+                <div id="fireFilter" hidden>
+                    <h5 class="bangdieukhien" style="margin-top: 20px;"><i class="fa fa-solid fa-clock-rotate-left"></i> LỊCH SỬ ĐIỂM CHÁY</h5>
                 <div style="margin-left: 18px;">
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" class="form-check-input" id="24h" checked>
+                        <input type="checkbox" class="form-check-input" id="24h">
                         <label class="form-check-label" style="font-weight: normal;">24h qua</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -91,10 +92,8 @@
                         </div>
                     </div>
                 </div>
+                </div>
                 <br>
-                <div class="form-check table-responsive" id="infoFirePoint"
-                    style="max-height: 550px;">
-                </div> --}}
             </div>
         </div>
     </div>
