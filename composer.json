@@ -13,7 +13,8 @@
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "phpoffice/phpspreadsheet": "^1.12"
+        "phpoffice/phpspreadsheet": "^1.12",
+        "webklex/php-imap": "^4.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -25,12 +25,23 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function(){
-            $weather = new WeatherController();
+        $weather = new WeatherController();
+        $schedule->call(function () use($weather) {
             $weather->getIndex();
             $weather->updateDBR();
             $weather->sendEmail();
+            $weather->getHotspot();
         });
+
+        // $schedule->call(function () use($weather) {
+        //     $weather->getIndex();
+        //     $weather->updateDBR();
+        //     $weather->sendEmail();
+        // })->dailyAt('13:15');
+
+        // $schedule->call(function () use($weather){
+        //     $weather->getHotspot();
+        // })->everyTenMinutes();
     }
 
     /**
@@ -40,7 +51,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

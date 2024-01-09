@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Commune;
 use App\dbr;
-use App\receiveEmail;
+use App\Hotspot;
 use App\Weather;
-use Illuminate\Http\Request;
+use DateTime;
+use DateTimeZone;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Webklex\PHPIMAP\ClientManager;
 
 class WeatherController extends Controller
 {
@@ -62,12 +66,6 @@ class WeatherController extends Controller
             $data['capncc'] = 1;
             $data['d'] = $d;
 
-            // lượng mưa 3 ngày
-            // $data['dayrain3'] = 0;
-            // if($data['luongmua'] > 0){
-            //     $data['dayrain3']=;
-            // }
-
             Weather::insert($data);
             set_time_limit(300);
         }
@@ -90,11 +88,10 @@ class WeatherController extends Controller
     public function calculateWarningLevel($maxa)
     {
         $dateTime = "'" . now()->format('Y-m-d') . "'";
-        $dateTimeAgo = "'" . date('Y-m-d', strtotime(' -1 day')) . "'";
-
         $dayData = Weather::where('maxa', $maxa)->where('thoigian', $dateTime)->first();
+
         if (isset($dayData)) {
-            $dayAgoData = Weather::where('maxa', $maxa)->where('thoigian', $dateTimeAgo)->first();
+            $dayAgoData = Weather::where('maxa', $maxa)->where('id', '<', $dayData->id)->orderBy('id', 'desc')->first();
             if (isset($dayAgoData)) {
                 $old_p = $dayAgoData->csp;
             } else {
@@ -123,22 +120,8 @@ class WeatherController extends Controller
                 $level = 5;
             }
 
-            $dateAgo = Weather::where('maxa', $maxa)->where('thoigian', $dateTimeAgo)->first();
-
-            // Tinh ngay khong mua lien tiep
-            if (isset($dateAgo)) {
-                $dayRain3Xa = $dateAgo->dayrain3;
-
-                if ($dayData->luongmua > 0 && $dayData->luongmua < 5) {
-                    $dayRain3Xa =  $dayRain3Xa + 1;
-                } else {
-                    $dayRain3Xa = 0;
-                }
-            } else {
-                $dayRain3Xa = 0;
-            }
-
-            if ($dayData->luongmua >= 5 || $dayRain3Xa >= 3) {
+            // nếu lượng mưa => thì reset p và cấp cháy
+            if ($dayData->luongmua >= 5) {
                 $dayData->csp = 0;
                 $dayData->capncc = 1;
             } else {
@@ -235,5 +218,105 @@ class WeatherController extends Controller
         }
 
         return "Update Success";
+    }
+
+    public function getHotspot()
+    {
+        set_time_limit(600);
+        $push_data = array();
+        $cm = new ClientManager();
+        $client = $cm->make([
+            'host' => 'imap.googlemail.com',
+            'port' => 993,
+            'encryption' => 'ssl',
+            'validate_cert' => true,
+            'username' => 'clonemail2k2@gmail.com',
+            'password' => 'xubpbiwdtrnokjtu',
+            'protocol' => 'imap',
+        ]);
+        try {
+            $client->connect();
+            $Folder = $client->getFolder("INBOX");
+            $Message = $Folder->query()->from('noreply@nasa.gov')->UNSEEN()->get();
+            foreach ($Message as $msg) {
+                $msg->setFlag(['Seen']);
+                $attachments = $msg->getAttachments();
+                foreach ($attachments as $attachment) {
+                    if ($attachment->getExtension() == 'txt') {
+                        $content = $attachment->getAttributes()['content'];
+                        $data_str = trim($content);
+                        $data_array = str_getcsv($data_str, "\n");
+                        for ($i = 1; $i < count($data_array); $i++) {
+                            $hotSpot = str_getcsv($data_array[$i], ",");
+                            array_push($push_data, $hotSpot);
+                        }
+                    }
+                }
+            }
+            print_r('Số mail cảnh báo cháy từ Nasa: '. count($push_data));
+
+            $tableName = "hanam_dbr";
+            for ($i = 0; $i < count($push_data); $i++) {
+                set_time_limit(600);
+                $lat = $push_data[$i][0];
+                $lon = $push_data[$i][1];
+
+                $dt_convert = $this->convertDateTime($push_data[$i][5] . " " . $push_data[$i][6]);
+                $acq_date = explode(" ", $dt_convert)[0];
+                $acq_time = explode(" ", $dt_convert)[1];
+                
+                $data = DB::select("select gid,maxa,xa,huyen,tk,khoanh,lo,ldlr,maldlr,churung from " . $tableName . " where ST_Intersects(" . $tableName . ".geom, 'SRID=4326;POINT(" . $lon . " " . $lat . ")'::geography)");
+                if (count($data) > 0) {
+                    $checkExsit = Hotspot::where('latitude', $lat)->where('longitude', $lon)->where('acq_date', $acq_date)->where('acq_time', $acq_time)->get();
+                    if (count($checkExsit) == 0) {
+                        $new = new Hotspot();
+                        $new->maxa = $data[0]->maxa;
+                        $new->tk = $data[0]->tk;
+                        $new->khoanh = $data[0]->khoanh;
+                        $new->lo = $data[0]->lo;
+                        $new->ldlr = $data[0]->ldlr;
+                        $new->maldlr = $data[0]->maldlr;
+                        $new->churung = $data[0]->churung;
+                        $new->longitude = $push_data[$i][1];
+                        $new->latitude = $push_data[$i][0];
+                        $new->brightness = $push_data[$i][2];
+                        $new->scan = $push_data[$i][3];
+                        $new->track = $push_data[$i][4];
+                        $new->acq_date = $acq_date;
+                        $new->acq_time = $acq_time;
+                        $new->satellite = $push_data[$i][7];
+                        $new->confidence = $push_data[$i][8];
+                        $new->version = $push_data[$i][9];
+                        $new->bright_t31 = $push_data[$i][10];
+                        $new->daynight = $push_data[$i][11];
+                        $new->save();
+
+
+                        /* Send Email */
+                        $subject = "Cảnh báo phát hiện điểm nguy cơ cháy";
+                        Mail::send('sendMail.mailHotspot', ['lat' => $push_data[$i][0], 'lon' => $push_data[$i][1], 'lo' => $data[0]->lo, 'khoanh' => $data[0]->khoanh, 'tk' => $data[0]->tk, 'churung' => $data[0]->churung, 'xa' => $data[0]->xa, 'huyen' => $data[0]->huyen], function ($mess) use ($subject) {
+                            $mess->to('kdg2k2@gmail.com');
+                            $mess->from('clonemail2k2@gmail.com', 'Hệ thống giám sát rừng tỉnh Hà Nam');
+                            $mess->subject($subject);
+                        });
+                    }
+                }
+            }
+
+            return "Success";
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function convertDateTime($date, $format = 'Y-m-d H:i')
+    {
+        $tz1 = 'UTC';
+        $tz2 = 'Asia/Ho_Chi_Minh'; // UTC +7
+
+        $d = new DateTime($date, new DateTimeZone($tz1));
+        $d->setTimeZone(new DateTimeZone($tz2));
+
+        return $d->format($format);
     }
 }

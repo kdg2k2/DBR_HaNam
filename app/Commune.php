@@ -18,9 +18,4 @@ class Commune extends Model
     {
         return $this->hasMany('App\Weather' , 'maxa', 'id');
     }
-
-    public function receiveEmail()
-    {
-        return $this->hasMany('App\receiveEmail' , 'maxa', 'id');
-    }
 }
