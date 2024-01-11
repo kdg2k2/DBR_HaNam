@@ -27,9 +27,27 @@ Route::get("/district/{matinh}", "getRegion@getDistrict");
 Route::get("/commune/{mahuyen}", "getRegion@getCommune");
 
 //ajax
-Route::get('/ajax/getWeather/{maxa}', 'AjaxController@getWeatherCommune');
-Route::get('/ajax/getFirePoints', 'AjaxController@getFirePoints');
-Route::get('/ajax/getHistoryFirePoints', 'AjaxController@getHistoryFirePoints');
+Route::group(['prefix' => 'ajax'], function () {
+    Route::get('/getWeather/{maxa}', 'AjaxController@getWeatherCommune');
+    Route::get('/getFirePoints', 'AjaxController@getFirePoints');
+    Route::get('/getHistoryFirePoints', 'AjaxController@getHistoryFirePoints');
 
-Route::get('/ajax/exportWeather', 'AjaxController@exportWeather');
-Route::get('/ajax/exportFirePoint', 'AjaxController@exportFirePoint');
+    Route::get('/exportWeather', 'AjaxController@exportWeather');
+    Route::get('/exportFirePoint', 'AjaxController@exportFirePoint');
+});
+
+//admin
+Route::group(['prefix' => 'admin'], function(){
+    Route::get('/me/edit', 'UserController@editUser');
+
+    Route::group(['prefix' => 'shp'], function(){
+        Route::get('/', 'ShapefileController@getDanhSach');
+        Route::get('/create', 'ShapefileController@getUpload');
+        Route::get('/bando/{id}', 'ShapefileController@getBando');
+        Route::post('/store', 'ShapefileController@postUpload');
+        Route::get('/use/{id}', 'ShapefileController@getSuDung');
+        Route::get('/download/{id}', 'ShapefileController@getDownload');
+        Route::post('/destroy/{id}', 'ShapefileController@getXoa');
+    });
+
+});

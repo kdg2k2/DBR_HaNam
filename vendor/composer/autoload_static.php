@@ -134,6 +134,7 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Shapefile\\' => 10,
         ),
         'R' => 
         array (
@@ -211,6 +212,7 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
         array (
             'Cron\\' => 5,
             'Complex\\' => 8,
+            'Chumper\\Zipper\\' => 15,
             'Carbon\\Doctrine\\' => 16,
             'Carbon\\' => 7,
         ),
@@ -354,6 +356,10 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Shapefile\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -508,6 +514,10 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
         ),
+        'Chumper\\Zipper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper',
+        ),
         'Carbon\\Doctrine\\' => 
         array (
             0 => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine',
@@ -548,7 +558,7 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\District' => __DIR__ . '/../..' . '/app/District.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Hotspot' => __DIR__ . '/../..' . '/app/Hotspot.php',
+        'App\\FirePoint' => __DIR__ . '/../..' . '/app/FirePoint.php',
         'App\\Http\\Controllers\\AjaxController' => __DIR__ . '/../..' . '/app/Http/Controllers/AjaxController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -556,6 +566,7 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ShapefileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShapefileController.php',
         'App\\Http\\Controllers\\WeatherController' => __DIR__ . '/../..' . '/app/Http/Controllers/WeatherController.php',
         'App\\Http\\Controllers\\WebController' => __DIR__ . '/../..' . '/app/Http/Controllers/WebController.php',
         'App\\Http\\Controllers\\getRegion' => __DIR__ . '/../..' . '/app/Http/Controllers/getRegion.php',
@@ -663,6 +674,11 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\TranslatorImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
         'Carbon\\TranslatorStrongTypeInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
+        'Chumper\\Zipper\\Facades\\Zipper' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/Facades/Zipper.php',
+        'Chumper\\Zipper\\Repositories\\RepositoryInterface' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/Repositories/RepositoryInterface.php',
+        'Chumper\\Zipper\\Repositories\\ZipRepository' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/Repositories/ZipRepository.php',
+        'Chumper\\Zipper\\Zipper' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/Zipper.php',
+        'Chumper\\Zipper\\ZipperServiceProvider' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/ZipperServiceProvider.php',
         'Complex\\Complex' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Complex.php',
         'Complex\\Exception' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Exception.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -3978,6 +3994,19 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Shapefile\\Geometry\\Geometry' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Geometry/Geometry.php',
+        'Shapefile\\Geometry\\GeometryCollection' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Geometry/GeometryCollection.php',
+        'Shapefile\\Geometry\\Linestring' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Geometry/Linestring.php',
+        'Shapefile\\Geometry\\MultiLinestring' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Geometry/MultiLinestring.php',
+        'Shapefile\\Geometry\\MultiPoint' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Geometry/MultiPoint.php',
+        'Shapefile\\Geometry\\MultiPolygon' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Geometry/MultiPolygon.php',
+        'Shapefile\\Geometry\\Point' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Geometry/Point.php',
+        'Shapefile\\Geometry\\Polygon' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Geometry/Polygon.php',
+        'Shapefile\\Shapefile' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/Shapefile.php',
+        'Shapefile\\ShapefileAutoloader' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/ShapefileAutoloader.php',
+        'Shapefile\\ShapefileException' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/ShapefileException.php',
+        'Shapefile\\ShapefileReader' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/ShapefileReader.php',
+        'Shapefile\\ShapefileWriter' => __DIR__ . '/..' . '/gasparesganga/php-shapefile/src/Shapefile/ShapefileWriter.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
