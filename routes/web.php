@@ -30,3 +30,6 @@ Route::get("/commune/{mahuyen}", "getRegion@getCommune");
 Route::get('/ajax/getWeather/{maxa}', 'AjaxController@getWeatherCommune');
 Route::get('/ajax/getFirePoints', 'AjaxController@getFirePoints');
 Route::get('/ajax/getHistoryFirePoints', 'AjaxController@getHistoryFirePoints');
+
+Route::get('/ajax/exportWeather', 'AjaxController@exportWeather');
+Route::get('/ajax/exportFirePoint', 'AjaxController@exportFirePoint');

@@ -21,5 +21,4 @@ class WebController extends Controller
     // public function getLienhe(){
     //     return view('pages.lienhe.lienhe');
     // }
-
 }

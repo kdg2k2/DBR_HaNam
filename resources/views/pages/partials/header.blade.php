@@ -15,7 +15,7 @@
                                     data-id="6797443" data-element_type="widget" data-widget_type="image.default">
                                     <div class="elementor-widget-container" style="background: none">
                                         <div class="elementor-image">
-                                            <a target="_blank" href="https://github.com/kdg2k2">
+                                            <a href="/">
                                                 <img src="{{ asset('/img/logo/kdg_logo.jpg') }}" style="border: solid 0.5px #fff"
                                                     class="attachment-full size-full wp-image-578" alt /> </a>
                                         </div>
