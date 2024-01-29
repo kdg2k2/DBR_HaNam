@@ -20,8 +20,8 @@ class WeatherController extends Controller
     public function getIndex()
     {
         $listCommune = Commune::all();
-        // Key WetherAPI: fb5e5739643b498babf72107232011
-        $api = 'fb5e5739643b498babf72107232011';
+        // Key WetherAPI: b04050645bc048e9a9b143125242901
+        $api = 'b04050645bc048e9a9b143125242901';
         $url = 'http://api.weatherapi.com/v1/history.json?key=' . $api . '&q=';
 
         foreach ($listCommune as $list) {
@@ -54,10 +54,10 @@ class WeatherController extends Controller
             // tổng lượng mưa 13h hqua đến 13h hôm nay
             $data['luongmua'] = $sum_luongmua_13h_0h_ago + $sum_luongmua_0h_13h;
             $data['thoigian'] = "'" . $time_now . "'";
-            $data['nhietdo'] = $data_weather->forecast->forecastday[0]->hour[13]->temp_c;
-            $data['doam'] = $data_weather->forecast->forecastday[0]->hour[13]->humidity;
-            $data['tocdogio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_kph;
-            $data['huonggio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_degree;
+            $data['nhietdo'] = $data_weather->forecast->forecastday[0]->hour[0]->temp_c;
+            $data['doam'] = $data_weather->forecast->forecastday[0]->hour[0]->humidity;
+            $data['tocdogio'] = $data_weather->forecast->forecastday[0]->hour[0]->wind_kph;
+            $data['huonggio'] = $data_weather->forecast->forecastday[0]->hour[0]->wind_degree;
             $data['csp'] = 0;
             $data['capncc'] = 1;
 
