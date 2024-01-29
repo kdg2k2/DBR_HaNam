@@ -14,7 +14,7 @@ class AjaxController extends Controller
     public function getWeatherCommune(Request $request)
     {
         $maxa = $request->maxa;
-        $data = Weather::where('maxa', $maxa)->get();
+        $data = Weather::where('maxa', $maxa)->orderByDesc('id')->get();
         return $data;
     }
 

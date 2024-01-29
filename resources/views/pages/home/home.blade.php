@@ -3,16 +3,6 @@
 
 <head>
     @include('pages.partials.head')
-
-    <style>
-        .link_git{
-            text-decoration-line: underline;
-        }
-
-        .link_git:hover {
-            text-decoration-line: none;
-        }
-    </style>
 </head>
 
 <body id="the7-body"
@@ -58,8 +48,8 @@
                                                                 data-id="a196ba6" data-element_type="widget"
                                                                 data-widget_type="heading.default">
                                                                 <div class="elementor-widget-container">
-                                                                    <h5 class="elementor-heading-title elementor-size-default link_git">
-                                                                        <a target="_blank" href="https://github.com/kdg2k2">KDG2K2</a>
+                                                                    <h5 class="elementor-heading-title elementor-size-default ">
+                                                                        <a target="_blank" href="https://github.com/kdg2k2">KDG</a>
                                                                     </h5>
                                                                 </div>
                                                             </div>

@@ -258,13 +258,13 @@ class WeatherController extends Controller
             $now_p = $k * $dayData->nhietdo * $dayData->d;
             $p = $now_p + $old_p;
 
-            if ($p >= 0 && $p <= 1000) {
+            if ($p >= 0 && $p <= 2500) {
                 $level = 1;
-            } else if ($p > 1000 && $p < 2500) {
-                $level = 2;
             } else if ($p > 2500 && $p < 5000) {
+                $level = 2;
+            } else if ($p > 5000 && $p < 7500) {
                 $level = 3;
-            } else if ($p > 5000 && $p < 10000) {
+            } else if ($p > 7500 && $p < 10000) {
                 $level = 4;
             } else {
                 $level = 5;
@@ -349,7 +349,7 @@ class WeatherController extends Controller
         $subject = "Số liệu KT các mức cảnh báo cấp độ cháy rừng " . now()->format('d-m-Y');
         Mail::send('mail.capchay', [], function ($mess) use ($subject, $fileName) {
             $mess->to('kdg2k2@gmail.com');
-            $mess->from('clonemail2k2@gmail.com', 'Hệ thống giám sát rừng tỉnh Hà Nam');
+            $mess->from('clonemail2k2@gmail.com', 'Hệ thống cảnh báo cháy rừng tỉnh Hà Nam');
             $mess->subject($subject);
             $mess->attach('public/weather_xlsx/' . $fileName);
         });
@@ -370,7 +370,7 @@ class WeatherController extends Controller
         return "Update Success";
     }
 
-    public function getHotspot()
+    public function getFirePoints()
     {
         set_time_limit(600);
         $push_data = array();
@@ -444,9 +444,9 @@ class WeatherController extends Controller
 
                         /* Send Email */
                         $subject = "Cảnh báo phát hiện điểm nguy cơ cháy";
-                        Mail::send('sendMail.mailHotspot', ['lat' => $push_data[$i][0], 'lon' => $push_data[$i][1], 'lo' => $data[0]->lo, 'khoanh' => $data[0]->khoanh, 'tk' => $data[0]->tk, 'churung' => $data[0]->churung, 'xa' => $data[0]->xa, 'huyen' => $data[0]->huyen], function ($mess) use ($subject) {
+                        Mail::send('mail.firepoint', ['lat' => $push_data[$i][0], 'lon' => $push_data[$i][1], 'lo' => $data[0]->lo, 'khoanh' => $data[0]->khoanh, 'tk' => $data[0]->tk, 'churung' => $data[0]->churung, 'xa' => $data[0]->xa, 'huyen' => $data[0]->huyen], function ($mess) use ($subject) {
                             $mess->to('kdg2k2@gmail.com');
-                            $mess->from('clonemail2k2@gmail.com', 'Hệ thống giám sát rừng tỉnh Hà Nam');
+                            $mess->from('clonemail2k2@gmail.com', 'Hệ thống dự báo cháy rừng tỉnh Hà Nam');
                             $mess->subject($subject);
                         });
                     }
@@ -462,7 +462,7 @@ class WeatherController extends Controller
     public function convertDateTime($date, $format = 'Y-m-d H:i')
     {
         $tz1 = 'UTC';
-        $tz2 = 'Asia/Ho_Chi_Minh'; // UTC +7
+        $tz2 = 'Asia/Ho_Chi_Minh';
 
         $d = new DateTime($date, new DateTimeZone($tz1));
         $d->setTimeZone(new DateTimeZone($tz2));

@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
             $weather->getIndex();
             $weather->updateDBR();
             $weather->sendEmail();
-            $weather->getHotspot();
+            $weather->getFirePoints();
         });
 
         // $schedule->call(function () use($weather) {
@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
         // })->dailyAt('13:15');
 
         // $schedule->call(function () use($weather){
-        //     $weather->getHotspot();
+        //     $weather->getFirePoints();
         // })->everyTenMinutes();
     }
 
