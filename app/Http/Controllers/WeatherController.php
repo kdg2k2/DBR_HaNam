@@ -54,10 +54,10 @@ class WeatherController extends Controller
             // tổng lượng mưa 13h hqua đến 13h hôm nay
             $data['luongmua'] = $sum_luongmua_13h_0h_ago + $sum_luongmua_0h_13h;
             $data['thoigian'] = "'" . $time_now . "'";
-            $data['nhietdo'] = $data_weather->forecast->forecastday[0]->hour[0]->temp_c;
-            $data['doam'] = $data_weather->forecast->forecastday[0]->hour[0]->humidity;
-            $data['tocdogio'] = $data_weather->forecast->forecastday[0]->hour[0]->wind_kph;
-            $data['huonggio'] = $data_weather->forecast->forecastday[0]->hour[0]->wind_degree;
+            $data['nhietdo'] = $data_weather->forecast->forecastday[0]->hour[13]->temp_c;
+            $data['doam'] = $data_weather->forecast->forecastday[0]->hour[13]->humidity;
+            $data['tocdogio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_kph;
+            $data['huonggio'] = $data_weather->forecast->forecastday[0]->hour[13]->wind_degree;
             $data['csp'] = 0;
             $data['capncc'] = 1;
 
@@ -228,10 +228,10 @@ class WeatherController extends Controller
             50 => 82.8,
         ];
 
-        if(isset($bang_tra_d[$val])){
+        if (isset($bang_tra_d[$val])) {
             return $bang_tra_d[$val];
         }
-        
+
         return 0;
     }
 
@@ -342,7 +342,7 @@ class WeatherController extends Controller
         }
 
         $publicPath = public_path();
-        $filePath = $publicPath . '/weather_xlsx/' . $fileName;
+        $filePath = $publicPath . '/dayly_weather/' . $fileName;
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
 
@@ -351,10 +351,10 @@ class WeatherController extends Controller
             $mess->to('kdg2k2@gmail.com');
             $mess->from('clonemail2k2@gmail.com', 'Hệ thống cảnh báo cháy rừng tỉnh Hà Nam');
             $mess->subject($subject);
-            $mess->attach('public/weather_xlsx/' . $fileName);
+            $mess->attach('public/dayly_weather/' . $fileName);
         });
 
-        return "Send Email Sucess";
+        return "Send Email Success";
     }
 
     public function updateDBR()
@@ -403,7 +403,6 @@ class WeatherController extends Controller
                     }
                 }
             }
-            print_r('Số mail cảnh báo cháy từ Nasa: ' . count($push_data));
 
             $tableName = "hanam_dbr";
             for ($i = 0; $i < count($push_data); $i++) {

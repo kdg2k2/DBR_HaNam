@@ -566,7 +566,6 @@ class ComposerStaticInit94d4bf9ac7f4a933030e46a346ee2917
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\ShapefileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShapefileController.php',
         'App\\Http\\Controllers\\WeatherController' => __DIR__ . '/../..' . '/app/Http/Controllers/WeatherController.php',
         'App\\Http\\Controllers\\WebController' => __DIR__ . '/../..' . '/app/Http/Controllers/WebController.php',
         'App\\Http\\Controllers\\getRegion' => __DIR__ . '/../..' . '/app/Http/Controllers/getRegion.php',
